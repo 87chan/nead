@@ -29,6 +29,9 @@ class HelloWorld : public cocos2d::Layer
 public:
     static cocos2d::Scene* createScene();
 
+	HelloWorld();
+	virtual ~HelloWorld() {}
+
     virtual bool init();
   
 	void initPhysics();

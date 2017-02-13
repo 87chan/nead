@@ -10,6 +10,20 @@
 
 USING_NS_CC;
 
+HelloWorld::HelloWorld()
+: World(nullptr)
+, ContactListener(nullptr)
+, Controller(nullptr)
+, FieldMgr(nullptr)
+, BallNode1(nullptr)
+, BallNode2(nullptr)
+, GoalNode(nullptr)
+, LineShotDirection(nullptr)
+, GameEndrLabel(nullptr)
+, bClear(false)
+{
+}
+
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
