@@ -7,6 +7,7 @@
 #include "MyController.h"
 #include "MyContactListener.h"
 #include "MyBallManager.h"
+#include "MySceneStageSelect.h"
 
 USING_NS_CC;
 
@@ -62,14 +63,19 @@ bool HelloWorld::init()
 	MenuItemImage* retryItem = MenuItemImage::create(
 		"replay1.png",
 		"replay2.png",
-		CC_CALLBACK_1(HelloWorld::retryCallBack, this));
+		CC_CALLBACK_1(HelloWorld::RetryCallBack, this));
+	Menu* menuRetry = Menu::create(retryItem, NULL);
+	menuRetry->setPosition(0.0f + retryItem->getContentSize().width * 0.5f, size.height - retryItem->getContentSize().height * 0.5f);
+	this->addChild(menuRetry, MENU_LAYER);
 
-	// メニューを作成する。これは autorelease オブジェクト。
-	Menu* menu = Menu::create(retryItem, NULL);
-	// メニューの位置を設定する。
-	menu->setPosition(0.0f + retryItem->getContentSize().width * 0.5f, size.height - retryItem->getContentSize().height * 0.5f);
-	// メニューを子レイヤーとして追加する。
-	this->addChild(menu, MENU_LAYER);
+	// 戻るボタンを作成.
+	MenuItemImage* returnItem = MenuItemImage::create(
+		"back1.png",
+		"back2.png",
+		CC_CALLBACK_1(HelloWorld::ReturnCallBack, this));
+	Menu* menuReturn = Menu::create(returnItem, NULL);
+	menuReturn->setPosition(size.width - returnItem->getContentSize().width * 0.5f, size.height - returnItem->getContentSize().height * 0.5f);
+	this->addChild(menuReturn, MENU_LAYER);
 
 	this->start();
 
@@ -220,12 +226,18 @@ void HelloWorld::GameEnd(GAME_STATE state)
 	bClear = true;
 }
 
-void HelloWorld::retryCallBack(Ref* pSender)
+void HelloWorld::RetryCallBack(Ref* pSender)
 {
 	this->start();
 	Director::getInstance()->resume();
 	GameEndrLabel->setVisible(false);
 	bClear = false;
+}
+
+void HelloWorld::ReturnCallBack(Ref* pSender)
+{
+	Director::getInstance()->resume();
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MySceneStageSelect::createScene()));
 }
 
 /**************************************************************************************************

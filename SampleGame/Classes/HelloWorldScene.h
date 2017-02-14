@@ -43,7 +43,8 @@ public:
 	void GameOverCallback();
 	void GameEnd(GAME_STATE state);
 
-    void retryCallBack(Ref* pSender);
+    void RetryCallBack(Ref* pSender);
+	void ReturnCallBack(Ref* pSender);
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
