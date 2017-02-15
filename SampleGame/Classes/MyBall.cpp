@@ -23,10 +23,11 @@ MyBall::~MyBall()
 {
 }
 
-void MyBall::Initialize(b2World* world, Layer* parentLayer, std::shared_ptr<MyBallManager> ballMgr, const cocos2d::Vec2& pos)
+void MyBall::Initialize(b2World* world, Layer* parentLayer, std::shared_ptr<MyBallManager> ballMgr, const cocos2d::Vec2& pos, int shotNum)
 {
 	MySpriteNode::Initialize(world, parentLayer);
 
+    LeftShotNum = shotNum;
 	BallMgrRef = ballMgr;
 
 	SpriteBatchNode = cocos2d::CCSpriteBatchNode::create("ball_16.png");

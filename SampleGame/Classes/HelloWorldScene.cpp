@@ -117,6 +117,10 @@ void HelloWorld::update(float dt)
 
 void HelloWorld::start()
 {
+    //絶対に子にする必要はないが、子にするとタイルレイヤーがそのまま表示される。
+    TMXTiledMap* pMap = TMXTiledMap::create("test_stage.tmx");
+    this->addChild(pMap);
+
 	if (!Controller)
 	{
 		Controller = new MyController();
@@ -143,16 +147,49 @@ void HelloWorld::start()
 	}
 	BallMgr->Finalize(World, this);
 
+
+    Vec2 ballPos_1,ballPos_2;
+    bool bSelect_1 = false, bSelect_2 = false;
+    int shotNum_1 = 0, shotNum_2 = 0;
+    Vec2 goalPos;
+    float goalSize;
+    //オブジェクトの位置取得
+    auto pObjectGroup = pMap->getObjectGroup("ObjectLayer1");
+    if (pObjectGroup)
+    {
+        {
+            auto ballInfo = pObjectGroup->getObject("ball1");
+            ballPos_1.x = ballInfo["x"].asFloat();
+            ballPos_1.y = ballInfo["y"].asFloat();
+            bSelect_1 = ballInfo["bSelect"].asBool();
+            shotNum_1 = ballInfo["shotNum"].asInt();
+        }
+        {
+            auto ballInfo2 = pObjectGroup->getObject("ball2");
+            ballPos_2.x = ballInfo2["x"].asFloat();
+            ballPos_2.y = ballInfo2["y"].asFloat();
+            bSelect_2 = ballInfo2["bSelect"].asBool();
+            shotNum_2 = ballInfo2["shotNum"].asInt();
+        }
+        {
+            auto goalInfo = pObjectGroup->getObject("goal");
+            goalPos.x = goalInfo["x"].asFloat();
+            goalPos.y = goalInfo["y"].asFloat();
+            goalSize = goalInfo["width"].asFloat();
+        }
+    }
+
 	// ボール1.
 	BallNode1 = MyBall::create();
-	BallNode1->Initialize(World, this, BallMgr, Vec2(10, 8));
-	BallNode1->SetSelect(true);
+    BallNode1->Initialize(World, this, BallMgr, ballPos_1, shotNum_1);
+    BallNode1->SetSelect(bSelect_1);
 	BallMgr->EntryBallNode(BallNode1);
 
 	// ボール2.
 	BallNode2 = MyBall::create();
-	BallNode2->Initialize(World, this, BallMgr, Vec2(50, 8));
-	BallMgr->EntryBallNode(BallNode2);
+    BallNode2->Initialize(World, this, BallMgr, ballPos_2, shotNum_2);
+    BallNode2->SetSelect(bSelect_2);
+    BallMgr->EntryBallNode(BallNode2);
 
 	// ゴール.
 	if (GoalNode)
@@ -160,7 +197,8 @@ void HelloWorld::start()
 		GoalNode->Finalize(World, this);
 	}
 	GoalNode = MyGoal::create();
-	GoalNode->Initialize(World, this);
+    GoalNode->InitParamInfo(goalPos, goalSize);
+    GoalNode->Initialize(World, this);
 
 	// 衝突時のコールバック登録.
 	ContactListener->RemoveContactCallback();
@@ -186,6 +224,9 @@ void HelloWorld::start()
 	LineShotDirection = MyDrawNode::create();
 	LineShotDirection->setLocalZOrder(UI_LAYER);
 	LineShotDirection->Initialize(World, this);
+
+
+
 }
 
 void HelloWorld::ClearCallback()

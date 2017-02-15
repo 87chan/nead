@@ -15,7 +15,7 @@ public:
 
 	CREATE_FUNC(MyBall);
 
-	void Initialize(b2World* world, cocos2d::Layer* parentLayer, std::shared_ptr<MyBallManager> ballMgr, const cocos2d::Vec2& pos);
+	void Initialize(b2World* world, cocos2d::Layer* parentLayer, std::shared_ptr<MyBallManager> ballMgr, const cocos2d::Vec2& pos,int shotNum);
 	void Finalize(b2World* world, cocos2d::Layer* parentLayer) override;
 	void Update(float dt);
 	void UpdateShotNum();

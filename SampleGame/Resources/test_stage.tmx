@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-up" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="5">
+ <tileset firstgid="1" name="ball" tilewidth="16" tileheight="16" tilecount="1" columns="0">
+  <tile id="0">
+   <image width="16" height="16" source="ball_16.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="test_tile" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="test_tile.png" width="64" height="32"/>
+ </tileset>
+ <layer name="TileLayer1" width="20" height="20">
+  <data encoding="csv">
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,
+2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
+</data>
+ </layer>
+ <objectgroup draworder="index" name="ObjectLayer1">
+  <object id="1" name="ball2" gid="1" x="178" y="587" width="16" height="16">
+   <properties>
+    <property name="bSelect" type="bool" value="false"/>
+    <property name="shotNum" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="2" name="ball1" gid="1" x="35" y="526" width="16" height="16">
+   <properties>
+    <property name="bSelect" type="bool" value="true"/>
+    <property name="shotNum" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="3" name="goal" x="108" y="514" width="32" height="32">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>

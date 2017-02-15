@@ -3,15 +3,23 @@
 
 USING_NS_CC;
 
-static const Vec2 GOAL_POS = Vec2(400.0f, 180.0f);
-static const float GOAL_SIZE = 32.0f;
+//static const Vec2 GOAL_POS = Vec2(400.0f, 180.0f);
+//static const float GOAL_SIZE = 32.0f;
 
 MyGoal::MyGoal()
+    : GoalPos()
+    , GoalSize(0.0f)
 {
 }
 
 MyGoal::~MyGoal()
 {
+}
+
+void MyGoal::InitParamInfo(const Vec2& pos, float size)
+{
+    this->GoalPos = pos;
+    this->GoalSize = size;
 }
 
 void MyGoal::Initialize(b2World* world, cocos2d::Layer* parentLayer)
@@ -21,7 +29,7 @@ void MyGoal::Initialize(b2World* world, cocos2d::Layer* parentLayer)
 	Size size = Director::getInstance()->getWinSize();
 
 	DrawData = cocos2d::CCDrawNode::create();
-	DrawData->drawCircle(GOAL_POS, GOAL_SIZE * 0.5f, 0.0f, 64, false, ccColor4F::RED);
+    DrawData->drawCircle(GoalPos, GoalSize * 0.5f, 0.0f, 64, false, ccColor4F::RED);
 	this->addChild(DrawData);
 
 	/* 物理エンジン上の物質の定義 */
@@ -36,8 +44,8 @@ void MyGoal::Initialize(b2World* world, cocos2d::Layer* parentLayer)
 
 	/* 物理エンジンの空間上の座標 */
 	rectBodyDef.position.Set(
-		GOAL_POS.x / PTM_RATIO,
-		GOAL_POS.y / PTM_RATIO);
+        GoalPos.x / PTM_RATIO,
+        GoalPos.y / PTM_RATIO);
 	rectBodyDef.userData = DrawData;
 
 	/* 物理エンジン上の物質作成 */
@@ -49,7 +57,7 @@ void MyGoal::Initialize(b2World* world, cocos2d::Layer* parentLayer)
 
 	/* 物理エンジン上の物質の形と大きさ */
 	b2CircleShape spriteShape;
-	spriteShape.m_radius = GOAL_SIZE * 0.5f / PTM_RATIO;
+    spriteShape.m_radius = GoalSize * 0.5f / PTM_RATIO;
 
 	/* 物質の性質定義（形、密度、摩擦） */
 	b2FixtureDef spriteFixturedef;
