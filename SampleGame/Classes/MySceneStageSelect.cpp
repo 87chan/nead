@@ -2,10 +2,10 @@
 #include "HelloWorldScene.h"
 #include "GlobalInfo.h"
 #include "platform/CCFileUtils.h"
+#include "ui/UIWidget.h"
+#include "ui/CocosGUI.h"
 
 USING_NS_CC;
-
-static const int TEST_STAGE_OFFSET = 50.0f;
 
 MySceneStageSelect::MySceneStageSelect()
 {
@@ -54,6 +54,10 @@ bool MySceneStageSelect::init()
 		}
 	}
 
+	float fontSize = 40.0f;
+	float fontOffset = 10.0f;
+	float fontSizeIncOffset = fontSize + fontOffset;
+	Size ListSize = Size(size.width, (fontSize + fontOffset) * searchedStageNum);
 	for (int i = 0; i < searchedStageNum; ++i)
 	{
 		std::string str = "Stage";
@@ -61,24 +65,37 @@ bool MySceneStageSelect::init()
 		sprintf_s(sNum, "%d", i + 1);
 		str += sNum;
 
-		LabelTTF* label = LabelTTF::create(str, "Arial", 40);
+		LabelTTF* label = LabelTTF::create(str, "Arial", fontSize);
 		TestLabelList.push_back(label);
 	}
 
+	auto _scrollView = ui::ScrollView::create();
+	_scrollView->setPosition(Vec2(0.0f, 0.0f));
+	_scrollView->setDirection(ui::ScrollView::Direction::VERTICAL);
+	_scrollView->setBounceEnabled(false);
+	this->addChild(_scrollView);
+
+	//実際に表示される領域（これ以外は隠れる)
+	auto inveSize = Size(this->getContentSize().width, size.height);
+	_scrollView->setContentSize(inveSize);
+
+	//中身のサイズを指定
+	_scrollView->setInnerContainerSize(Size(this->getContentSize().width, ListSize.height));
+
+	Size firstPositionOffset = Size(0.0f, fontSize * 0.5f);
 	for (int i = 0; i < searchedStageNum; ++i)
 	{
 		LabelTTF* label = TestLabelList[i];
-		MenuItemLabel* menuLabel;
-
-		menuLabel = MenuItemLabel::create(label, CC_CALLBACK_0(MySceneStageSelect::TouchStageItem, this));
-		menuLabel->setPosition(0.0f, i * -TEST_STAGE_OFFSET);
+		MenuItemLabel* menuLabel = MenuItemLabel::create(label, CC_CALLBACK_0(MySceneStageSelect::TouchStageItem, this));
 
 		MenuItemStageList.push_back(menuLabel);
-	}
 
-	Menu = Menu::create(MenuItemStageList[0], MenuItemStageList[1], MenuItemStageList[2], MenuItemStageList[3], nullptr);
-	Menu->setPosition(Vec2(size.width * 0.5f, size.height * 0.8f));
-	this->addChild(Menu);
+		cocos2d::Menu* menu = Menu::create(menuLabel, nullptr);
+		menu->setPosition(Vec2(size.width * 0.5f, (ListSize.height - firstPositionOffset.height) + i * -fontSizeIncOffset));
+
+		//スクロールする中身を追加（LayerやSpriteなど）
+		_scrollView->addChild(menu);
+	}
 
 	this->scheduleUpdate();
 
