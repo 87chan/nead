@@ -1,5 +1,4 @@
 #pragma once
-#include "base\CCRef.h"
 
 #define PTM_RATIO 32.0f
 #define TAG_BALL 0

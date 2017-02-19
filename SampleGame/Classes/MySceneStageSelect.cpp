@@ -1,9 +1,10 @@
 #include "MySceneStageSelect.h"
 #include "HelloWorldScene.h"
+#include "GlobalInfo.h"
+#include "platform/CCFileUtils.h"
 
 USING_NS_CC;
 
-static const int TEST_STAGE_NUM = 3;
 static const int TEST_STAGE_OFFSET = 50.0f;
 
 MySceneStageSelect::MySceneStageSelect()
@@ -29,7 +30,31 @@ bool MySceneStageSelect::init()
 
 	Size size = Director::getInstance()->getWinSize();
 
-	for (int i = 0; i < TEST_STAGE_NUM; ++i)
+	// フォルダからステージを読み込む.
+	int searchedStageNum = 1;
+	bool bContinue = true;
+	std::string fileName = "";
+
+	while (bContinue)
+	{
+		char sNum[32];
+		sprintf_s(sNum, "stage/stage%02d.tmx", searchedStageNum);
+		fileName = sNum;
+		auto filePath = FileUtils::getInstance()->fullPathForFilename(fileName);
+
+		if (filePath == "")
+		{
+			--searchedStageNum;
+			bContinue = false;
+			continue;
+		}
+		else
+		{
+			++searchedStageNum;
+		}
+	}
+
+	for (int i = 0; i < searchedStageNum; ++i)
 	{
 		std::string str = "Stage";
 		char sNum[32];
@@ -40,7 +65,7 @@ bool MySceneStageSelect::init()
 		TestLabelList.push_back(label);
 	}
 
-	for (int i = 0; i < TEST_STAGE_NUM; ++i)
+	for (int i = 0; i < searchedStageNum; ++i)
 	{
 		LabelTTF* label = TestLabelList[i];
 		MenuItemLabel* menuLabel;
@@ -51,7 +76,7 @@ bool MySceneStageSelect::init()
 		MenuItemStageList.push_back(menuLabel);
 	}
 
-	Menu = Menu::create(MenuItemStageList[0], MenuItemStageList[1], MenuItemStageList[2], nullptr);
+	Menu = Menu::create(MenuItemStageList[0], MenuItemStageList[1], MenuItemStageList[2], MenuItemStageList[3], nullptr);
 	Menu->setPosition(Vec2(size.width * 0.5f, size.height * 0.8f));
 	this->addChild(Menu);
 
@@ -70,6 +95,8 @@ void MySceneStageSelect::InitLabel()
 
 void MySceneStageSelect::TouchStageItem()
 {
+	GlobalInfo::GetInstance()->str = "testStr";
+
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, HelloWorld::createScene()));
 }
 
