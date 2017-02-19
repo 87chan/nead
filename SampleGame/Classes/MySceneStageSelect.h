@@ -17,12 +17,9 @@ public:
 	void update(float dt);
 	void InitLabel();
 
-	void TouchStageItem();
+	void TouchStageItem(Ref* pSender);
 
 private:
-	cocos2d::Menu*						Menu;
-	std::vector<cocos2d::LabelTTF*>		TestLabelList;
-	std::vector<cocos2d::MenuItem*>		MenuItemStageList;
 };
 
 /**************************************************************************************************

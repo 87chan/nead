@@ -8,6 +8,7 @@
 #include "MyContactListener.h"
 #include "MyBallManager.h"
 #include "MySceneStageSelect.h"
+#include "GlobalInfo.h"
 
 USING_NS_CC;
 
@@ -124,7 +125,8 @@ void HelloWorld::update(float dt)
 void HelloWorld::start()
 {
     //絶対に子にする必要はないが、子にするとタイルレイヤーがそのまま表示される。
-    TMXTiledMap* pMap = TMXTiledMap::create("test_stage.tmx");
+	std::string filePath = GlobalInfo::GetInstance()->stagePath;
+    TMXTiledMap* pMap = TMXTiledMap::create(filePath);
     this->addChild(pMap);
 
 	if (!Controller)
