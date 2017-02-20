@@ -14,7 +14,7 @@ public:
 
 	virtual void Initialize(b2World* world, cocos2d::Layer* parentLayer) override;
 	virtual void Finalize(b2World* world, cocos2d::Layer* parentLayer) override;
-	void UpdateBody(float dt) override;
+	virtual void UpdateBody(float dt) override;
 
 	void clear() { DrawData->clear(); }
 	void drawLine(const cocos2d::Vec2 &origin, const cocos2d::Vec2 &destination, const cocos2d::Color4F &color){ DrawData->drawLine(origin, destination, color); }
