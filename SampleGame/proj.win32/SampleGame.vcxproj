@@ -146,6 +146,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\GimmickBase.cpp" />
+    <ClCompile Include="..\Classes\GimmickManager.cpp" />
     <ClCompile Include="..\Classes\GlobalInfo.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\MyBall.cpp" />
@@ -165,6 +166,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\AppHeader.h" />
     <ClInclude Include="..\Classes\GimmickBase.h" />
+    <ClInclude Include="..\Classes\GimmickManager.h" />
     <ClInclude Include="..\Classes\GlobalInfo.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\MyBall.h" />

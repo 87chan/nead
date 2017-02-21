@@ -216,9 +216,11 @@ void HelloWorld::start()
 	{
 		if (MyBall* ball = (*it))
 		{
+			// ƒ{[ƒ‹‚ÆƒS[ƒ‹‚ªG‚ê‚½Žž.
 			ContactEntryParam param = ContactEntryParam();
 			param.body1 = ball->GetBodyData();
 			param.body2 = GoalNode->GetBodyData();
+			param.timing = ContactTiming::BEGIN;
 			param.SetCallback(this, &HelloWorld::ClearCallback);
 			ContactListener->EntryContactCallBack(param);
 		}

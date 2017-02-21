@@ -6,6 +6,8 @@ GimmickBase::GimmickBase()
 void GimmickBase::Initialize(b2World* world, cocos2d::Layer* parentLayer)
 {
 	MyDrawNode::Initialize(world, parentLayer);
+
+	// 
 }
 
 void GimmickBase::Finalize(b2World* world, cocos2d::Layer* parentLayer)
