@@ -63,6 +63,9 @@
     <ClCompile Include="..\Classes\GimmickManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GimmickAccelerate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -117,6 +120,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GimmickManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GimmickAccelerate.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

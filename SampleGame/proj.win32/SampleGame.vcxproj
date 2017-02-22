@@ -145,6 +145,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\GimmickAccelerate.cpp" />
     <ClCompile Include="..\Classes\GimmickBase.cpp" />
     <ClCompile Include="..\Classes\GimmickManager.cpp" />
     <ClCompile Include="..\Classes\GlobalInfo.cpp" />
@@ -165,6 +166,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\AppHeader.h" />
+    <ClInclude Include="..\Classes\GimmickAccelerate.h" />
     <ClInclude Include="..\Classes\GimmickBase.h" />
     <ClInclude Include="..\Classes\GimmickManager.h" />
     <ClInclude Include="..\Classes\GlobalInfo.h" />
