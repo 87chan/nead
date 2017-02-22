@@ -12,7 +12,7 @@ public:
 	~MyBallManager();
 
 	void EntryBallNode(MyBall* ball);
-	void Finalize(b2World* world, cocos2d::Layer* parentLayer);
+	void Finalize(b2World* world, cocos2d::CCNode* parentNode);
 	void Update(float dt);
 
 	bool CheckAllFinish();

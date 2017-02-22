@@ -15,17 +15,17 @@ MyNode::~MyNode()
 {
 }
 
-void MyNode::Initialize(b2World* world, cocos2d::Layer* parentLayer)
+void MyNode::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 {
 	UniqueID = UniqueIDCounter;
 
 	++UniqueIDCounter;
 
 	// 親に自分を紐付ける.
-	parentLayer->addChild(this);
+	parentNode->addChild(this);
 }
 
-void MyNode::Finalize(b2World* world, cocos2d::Layer* parentLayer)
+void MyNode::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 {
 	// 自分の子を外す.
 	this->removeAllChildren();
@@ -37,7 +37,7 @@ void MyNode::Finalize(b2World* world, cocos2d::Layer* parentLayer)
 	}
 
 	// 親から自分を外す.
-	parentLayer->removeChild(this);
+	parentNode->removeChild(this);
 }
 
 void MyNode::Remove()

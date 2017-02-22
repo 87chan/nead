@@ -12,8 +12,8 @@ public:
 
 	CREATE_FUNC(MyDrawNode);
 
-	virtual void Initialize(b2World* world, cocos2d::Layer* parentLayer) override;
-	virtual void Finalize(b2World* world, cocos2d::Layer* parentLayer) override;
+	virtual void Initialize(b2World* world, cocos2d::CCNode* parentNode) override;
+	virtual void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
 	virtual void UpdateBody(float dt) override;
 
 	void clear() { DrawData->clear(); }

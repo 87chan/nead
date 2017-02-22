@@ -12,17 +12,17 @@ MyDrawNode::~MyDrawNode()
 {
 }
 
-void MyDrawNode::Initialize(b2World* world, cocos2d::Layer* parentLayer)
+void MyDrawNode::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	MyNode::Initialize(world, parentLayer);
+	MyNode::Initialize(world, parentNode);
 
 	DrawData = CCDrawNode::create();
 	this->addChild(DrawData);
 }
 
-void MyDrawNode::Finalize(b2World* world, cocos2d::Layer* parentLayer)
+void MyDrawNode::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	MyNode::Finalize(world, parentLayer);
+	MyNode::Finalize(world, parentNode);
 }
 
 void MyDrawNode::UpdateBody(float dt)

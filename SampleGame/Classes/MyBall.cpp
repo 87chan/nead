@@ -23,9 +23,9 @@ MyBall::~MyBall()
 {
 }
 
-void MyBall::Initialize(b2World* world, Layer* parentLayer, std::shared_ptr<MyBallManager> ballMgr, const cocos2d::Vec2& pos, int shotNum)
+void MyBall::Initialize(b2World* world, cocos2d::CCNode* parentNode, std::shared_ptr<MyBallManager> ballMgr, const cocos2d::Vec2& pos, int shotNum)
 {
-	MySpriteNode::Initialize(world, parentLayer);
+	MySpriteNode::Initialize(world, parentNode);
 
     LeftShotNum = shotNum;
 	BallMgrRef = ballMgr;
@@ -40,7 +40,7 @@ void MyBall::Initialize(b2World* world, Layer* parentLayer, std::shared_ptr<MyBa
 
 	CircleSelected = MyDrawNode::create();
 	CircleSelected->setLocalZOrder(UI_LAYER);
-	CircleSelected->Initialize(world, parentLayer);
+	CircleSelected->Initialize(world, parentNode);
 
 	Size size = Director::getInstance()->getWinSize();
 
@@ -90,11 +90,11 @@ void MyBall::Initialize(b2World* world, Layer* parentLayer, std::shared_ptr<MyBa
 	BodyData->CreateFixture(&spriteFixturedef);
 }
 
-void MyBall::Finalize(b2World* world, cocos2d::Layer* parentLayer)
+void MyBall::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	CircleSelected->Finalize(world, parentLayer);
+	CircleSelected->Finalize(world, parentNode);
 
-	MySpriteNode::Finalize(world, parentLayer);
+	MySpriteNode::Finalize(world, parentNode);
 }
 
 void MyBall::Update(float dt)

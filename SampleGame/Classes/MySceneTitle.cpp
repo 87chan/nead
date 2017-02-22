@@ -1,5 +1,6 @@
 #include "MySceneTitle.h"
 #include "MySceneStageSelect.h"
+#include "AppHeader.h"
 
 USING_NS_CC;
 
@@ -18,19 +19,8 @@ MySceneTitle::~MySceneTitle()
 {
 }
 
-Scene* MySceneTitle::createScene()
+void MySceneTitle::Initialize()
 {
-	auto sceneTitle = MySceneTitle::create();
-	return sceneTitle;
-}
-
-bool MySceneTitle::init()
-{
-	if (!Scene::init())
-	{
-		return false;
-	}
-
 	//イベントリスナーの設定.
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(MySceneTitle::onTouchBegan, this);
@@ -39,15 +29,13 @@ bool MySceneTitle::init()
 
 
 	this->InitLabel();
-
-	this->scheduleUpdate();
-
-	return true;
 }
 
-void MySceneTitle::update(float dt)
+void MySceneTitle::update(float delta)
 {
-	TimeCount += dt;
+	SceneBase::update(delta);
+
+	TimeCount += delta;
 	if (OPACITY_ANIMATION_TIME <= TimeCount)
 	{
 		float sub = TimeCount - OPACITY_ANIMATION_TIME;
@@ -81,7 +69,7 @@ bool MySceneTitle::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
  
 void MySceneTitle::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MySceneStageSelect::createScene()));
+	SceneUtil::TransitionScene<MySceneStageSelect, TransitionFade>(1.0f);
 }
 
 /**************************************************************************************************

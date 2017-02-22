@@ -2,19 +2,16 @@
 
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
+#include "SceneBase.h"
 
-class MySceneStageSelect : public cocos2d::Scene
+class MySceneStageSelect : public SceneBase
 {
 public:
 	MySceneStageSelect();
 	~MySceneStageSelect();
 
-	CREATE_FUNC(MySceneStageSelect);
-
-	static cocos2d::Scene* createScene();
-
-	bool init();
-	void update(float dt);
+	void Initialize() override;
+	void update(float delta);
 	void InitLabel();
 
 	void TouchStageItem(Ref* pSender);

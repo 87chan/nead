@@ -10,8 +10,8 @@ public:
 	GimmickBase();
 	virtual ~GimmickBase() {}
 
-	virtual void Initialize(b2World* world, cocos2d::Layer* parentLayer) override;
-	virtual void Finalize(b2World* world, cocos2d::Layer* parentLayer) override;
+	virtual void Initialize(b2World* world, cocos2d::CCNode* parentNode) override;
+	virtual void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
 	virtual void UpdateBody(float dt) override;
 
 	// ‰½‚©‚ÉG‚ê‚ç‚ê‚½‚ÉŒÄ‚Î‚ê‚éˆ—.

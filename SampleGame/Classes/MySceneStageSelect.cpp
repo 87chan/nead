@@ -1,9 +1,9 @@
 #include "MySceneStageSelect.h"
-#include "HelloWorldScene.h"
 #include "GlobalInfo.h"
 #include "platform/CCFileUtils.h"
 #include "ui/UIWidget.h"
 #include "ui/CocosGUI.h"
+#include "SceneGameMain.h"
 
 USING_NS_CC;
 
@@ -15,18 +15,9 @@ MySceneStageSelect::~MySceneStageSelect()
 {
 }
 
-Scene* MySceneStageSelect::createScene()
+void MySceneStageSelect::Initialize()
 {
-	auto sceneTitle = MySceneStageSelect::create();
-	return sceneTitle;
-}
-
-bool MySceneStageSelect::init()
-{
-	if (!Scene::init())
-	{
-		return false;
-	}
+	SceneBase::Initialize();
 
 	Size size = Director::getInstance()->getWinSize();
 
@@ -98,14 +89,11 @@ bool MySceneStageSelect::init()
 		//スクロールする中身を追加（LayerやSpriteなど）
 		_scrollView->addChild(menu);
 	}
-
-	this->scheduleUpdate();
-
-	return true;
 }
 
-void MySceneStageSelect::update(float dt)
+void MySceneStageSelect::update(float delta)
 {
+	SceneBase::update(delta);
 }
 
 void MySceneStageSelect::InitLabel()
@@ -120,7 +108,7 @@ void MySceneStageSelect::TouchStageItem(Ref* pSender)
 		sprintf_s(sNum, "stage/stage%02d.tmx", item->getTag());
 		GlobalInfo::GetInstance()->stagePath = sNum;
 
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, HelloWorld::createScene()));
+		SceneUtil::TransitionScene<SceneGameMain, TransitionFade>(1.0f);
 	}
 }
 

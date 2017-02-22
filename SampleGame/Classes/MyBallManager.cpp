@@ -17,12 +17,12 @@ void MyBallManager::EntryBallNode(MyBall* ball)
 	BallNodeList.push_back(ball);
 }
 
-void MyBallManager::Finalize(b2World* world, Layer* parentLayer)
+void MyBallManager::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 {
 	std::vector<MyBall*>::iterator it = BallNodeList.begin();
 	for (; it != BallNodeList.end(); ++it)
 	{
-		(*it)->Finalize(world, parentLayer);
+		(*it)->Finalize(world, parentNode);
 	}
 
 	BallNodeList.clear();

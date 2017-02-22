@@ -12,8 +12,8 @@ public:
 
 	CREATE_FUNC(MySpriteNode);
 
-	virtual void Initialize(b2World* world, cocos2d::Layer* parentLayer) override;
-	virtual void Finalize(b2World* world, cocos2d::Layer* parentLayer) override;
+	virtual void Initialize(b2World* world, cocos2d::CCNode* parentNode) override;
+	virtual void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
 	virtual void UpdateBody(float dt) override;
 
 	void initWithTexture(cocos2d::Texture2D* tex) { SpriteData->initWithTexture(tex); }

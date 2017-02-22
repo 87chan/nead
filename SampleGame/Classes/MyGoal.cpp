@@ -22,9 +22,9 @@ void MyGoal::InitParamInfo(const Vec2& pos, float size)
     this->GoalSize = size;
 }
 
-void MyGoal::Initialize(b2World* world, cocos2d::Layer* parentLayer)
+void MyGoal::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	MyDrawNode::Initialize(world, parentLayer);
+	MyDrawNode::Initialize(world, parentNode);
 
 	Size size = Director::getInstance()->getWinSize();
 
@@ -70,9 +70,9 @@ void MyGoal::Initialize(b2World* world, cocos2d::Layer* parentLayer)
 	BodyData->CreateFixture(&spriteFixturedef);
 }
 
-void MyGoal::Finalize(b2World* world, cocos2d::Layer* parentLayer)
+void MyGoal::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	MyDrawNode::Finalize(world, parentLayer);
+	MyDrawNode::Finalize(world, parentNode);
 }
 
 /**************************************************************************************************

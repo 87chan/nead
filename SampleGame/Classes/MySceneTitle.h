@@ -2,19 +2,16 @@
 
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
+#include "SceneBase.h"
 
-class MySceneTitle : public cocos2d::Scene
+class MySceneTitle : public SceneBase
 {
 public:
 	MySceneTitle();
 	virtual ~MySceneTitle();
 
-	CREATE_FUNC(MySceneTitle);
-
-	static cocos2d::Scene* createScene();
-
-	bool init();
-	void update(float dt);
+	void Initialize() override;
+	void update(float delta) override;
 	void InitLabel();
 
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);

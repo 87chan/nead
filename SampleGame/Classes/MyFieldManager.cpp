@@ -12,16 +12,16 @@ MyFieldManager::~MyFieldManager()
 {
 }
 
-void MyFieldManager::Initialize(b2World* world, cocos2d::Layer* parentLayer)
+void MyFieldManager::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	MyNode::Initialize(world, parentLayer);
+	MyNode::Initialize(world, parentNode);
 
 	this->CreateFrame(world);
 }
 
-void MyFieldManager::Finalize(b2World* world, cocos2d::Layer* parentLayer)
+void MyFieldManager::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	MyNode::Finalize(world, parentLayer);
+	MyNode::Finalize(world, parentNode);
 }
 
 void MyFieldManager::CreateFrame(b2World* world)

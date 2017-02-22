@@ -9,8 +9,8 @@ public:
 	MyNode();
 	virtual ~MyNode();
 
-	virtual void Initialize(b2World* world, cocos2d::Layer* parentLayer);
-	virtual void Finalize(b2World* world, cocos2d::Layer* parentLayer);
+	virtual void Initialize(b2World* world, cocos2d::CCNode* parentNode);
+	virtual void Finalize(b2World* world, cocos2d::CCNode* parentNode);
 	virtual void UpdateBody(float dt) {}
 	void Remove();
 

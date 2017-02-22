@@ -17,8 +17,8 @@ public:
 
 	CREATE_FUNC(MyFieldManager);
 
-	void Initialize(b2World* world, cocos2d::Layer* parentLayer) override;
-	void Finalize(b2World* world, cocos2d::Layer* parentLayer) override;
+	void Initialize(b2World* world, cocos2d::CCNode* parentNode) override;
+	void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
 
 	void CreateFrame(b2World* world);
 
