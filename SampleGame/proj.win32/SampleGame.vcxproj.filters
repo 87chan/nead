@@ -31,6 +31,9 @@
     <Filter Include="src\Stage">
       <UniqueIdentifier>{161e0e5b-51dc-4154-a486-fe1a3e40cac9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ManagerBase">
+      <UniqueIdentifier>{d2d42012-a00b-4847-b43e-63a6f8996ff7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GlobalInfo.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ManagerBase\ManagerBase.cpp">
+      <Filter>src\ManagerBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GlobalInfo.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ManagerBase\ManagerBase.h">
+      <Filter>src\ManagerBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

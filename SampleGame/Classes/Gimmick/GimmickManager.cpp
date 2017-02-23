@@ -6,18 +6,20 @@ GimmickManager::GimmickManager()
 
 void GimmickManager::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	WorldRef = world;
-	ParentRef = parentNode;
+	ManagerBase::Initialize(world, parentNode);
+}
+
+void GimmickManager::Update(float delta)
+{
+	ManagerBase::Update(delta);
 }
 
 void GimmickManager::Finalize()
 {
-	for (int i = 0; i < GimmickList.size(); ++i)
+	std::vector<GimmickBase*>::iterator it = GimmickList.begin();
+	for (; it != GimmickList.end(); ++it)
 	{
-		if (GimmickBase* gimmick = GimmickList[i])
-		{
-			gimmick->Finalize(WorldRef, ParentRef);
-		}
+		(*it)->Finalize(WorldRef, ParentRef);
 	}
 
 	GimmickList.clear();

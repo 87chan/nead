@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Gimmick\GimmickManager.cpp" />
     <ClCompile Include="..\Classes\Gimmick\MyGoal.cpp" />
     <ClCompile Include="..\Classes\GlobalInfo.cpp" />
+    <ClCompile Include="..\Classes\ManagerBase\ManagerBase.cpp" />
     <ClCompile Include="..\Classes\Node\MyDrawNode.cpp" />
     <ClCompile Include="..\Classes\Node\MyNode.cpp" />
     <ClCompile Include="..\Classes\Node\MySpriteNode.cpp" />
@@ -176,6 +177,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Gimmick\GimmickManager.h" />
     <ClInclude Include="..\Classes\Gimmick\MyGoal.h" />
     <ClInclude Include="..\Classes\GlobalInfo.h" />
+    <ClInclude Include="..\Classes\ManagerBase\ManagerBase.h" />
     <ClInclude Include="..\Classes\Node\MyDrawNode.h" />
     <ClInclude Include="..\Classes\Node\MyNode.h" />
     <ClInclude Include="..\Classes\Node\MySpriteNode.h" />
