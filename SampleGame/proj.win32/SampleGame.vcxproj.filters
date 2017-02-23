@@ -10,63 +10,84 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Ball">
+      <UniqueIdentifier>{492b3e76-2864-4ef0-a076-29d7255417da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Collision">
+      <UniqueIdentifier>{d27e2a6d-d55a-4bdc-bdcd-eac1710e0638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Controller">
+      <UniqueIdentifier>{99f3f7a1-ae1e-42cb-9542-342603f3ac2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Gimmick">
+      <UniqueIdentifier>{4c29ac50-0e20-4a89-9a7f-0c986cf10aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Node">
+      <UniqueIdentifier>{2e5b63e3-2067-4a8c-b96d-67d4a93c1877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scene">
+      <UniqueIdentifier>{9439ca12-f332-4a46-902e-7c2e8329c53c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Stage">
+      <UniqueIdentifier>{161e0e5b-51dc-4154-a486-fe1a3e40cac9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Ball\MyBall.cpp">
+      <Filter>src\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Ball\MyBallManager.cpp">
+      <Filter>src\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Collision\MyContactListener.cpp">
+      <Filter>src\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controller\MyController.cpp">
+      <Filter>src\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Gimmick\GimmickAccelerate.cpp">
+      <Filter>src\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Gimmick\GimmickBase.cpp">
+      <Filter>src\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Gimmick\GimmickManager.cpp">
+      <Filter>src\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Gimmick\MyGoal.cpp">
+      <Filter>src\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Node\MyDrawNode.cpp">
+      <Filter>src\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Node\MyNode.cpp">
+      <Filter>src\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Node\MySpriteNode.cpp">
+      <Filter>src\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scene\MySceneStageSelect.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scene\MySceneTitle.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scene\SceneBase.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Scene\SceneGameMain.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stage\MyFieldManager.cpp">
+      <Filter>src\Stage</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MyBall.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyNode.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MySpriteNode.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyDrawNode.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyGoal.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyFieldManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyController.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyContactListener.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MyBallManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MySceneTitle.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MySceneStageSelect.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GlobalInfo.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GimmickBase.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GimmickManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GimmickAccelerate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SceneBase.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SceneGameMain.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,61 +95,61 @@
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\Ball\MyBall.h">
+      <Filter>src\Ball</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MyBall.h">
+    <ClInclude Include="..\Classes\Ball\MyBallManager.h">
+      <Filter>src\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Collision\MyContactListener.h">
+      <Filter>src\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controller\MyController.h">
+      <Filter>src\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Gimmick\GimmickAccelerate.h">
+      <Filter>src\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Gimmick\GimmickBase.h">
+      <Filter>src\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Gimmick\GimmickManager.h">
+      <Filter>src\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Gimmick\MyGoal.h">
+      <Filter>src\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Node\MyDrawNode.h">
+      <Filter>src\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Node\MyNode.h">
+      <Filter>src\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Node\MySpriteNode.h">
+      <Filter>src\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scene\MySceneStageSelect.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scene\MySceneTitle.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scene\SceneBase.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Scene\SceneGameMain.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stage\MyFieldManager.h">
+      <Filter>src\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppHeader.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MyNode.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MySpriteNode.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MyDrawNode.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MyGoal.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MyFieldManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MyController.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MyContactListener.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MyBallManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MySceneTitle.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MySceneStageSelect.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GlobalInfo.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GimmickBase.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GimmickManager.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GimmickAccelerate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SceneBase.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SceneGameMain.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

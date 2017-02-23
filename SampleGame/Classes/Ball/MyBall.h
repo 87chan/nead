@@ -1,9 +1,9 @@
 #pragma once
 
-#include "MySpriteNode.h"
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
-#include "MyDrawNode.h"
+#include "Node/MyDrawNode.h"
+#include "Node/MySpriteNode.h"
 
 class MyBallManager;
 

@@ -1,14 +1,14 @@
 #include "SceneGameMain.h"
 #include "SimpleAudioEngine.h"
-#include "MyBall.h"
 #include "AppHeader.h"
-#include "MyGoal.h"
-#include "MyFieldManager.h"
-#include "MyController.h"
-#include "MyContactListener.h"
-#include "MyBallManager.h"
 #include "MySceneStageSelect.h"
 #include "GlobalInfo.h"
+#include "Collision/MyContactListener.h"
+#include "Controller/MyController.h"
+#include "Node/MyDrawNode.h"
+#include "Ball/MyBallManager.h"
+#include "Stage/MyFieldManager.h"
+#include "Gimmick/MyGoal.h"
 
 USING_NS_CC;
 

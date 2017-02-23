@@ -2,7 +2,7 @@
 
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
-#include "MyDrawNode.h"
+#include "Node/MyDrawNode.h"
 
 class GimmickBase : public MyDrawNode
 {

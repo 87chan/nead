@@ -1,8 +1,8 @@
 #pragma once
 
-#include "MyDrawNode.h"
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
+#include "Node/MyDrawNode.h"
 
 class MyGoal : public MyDrawNode
 {

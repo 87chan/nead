@@ -7,7 +7,7 @@
 
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
-#include "MyNode.h"
+#include "Node/MyNode.h"
 
 class MyFieldManager : public MyNode
 {

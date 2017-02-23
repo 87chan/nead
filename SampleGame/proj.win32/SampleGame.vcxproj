@@ -145,45 +145,45 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\GimmickAccelerate.cpp" />
-    <ClCompile Include="..\Classes\GimmickBase.cpp" />
-    <ClCompile Include="..\Classes\GimmickManager.cpp" />
+    <ClCompile Include="..\Classes\Ball\MyBall.cpp" />
+    <ClCompile Include="..\Classes\Ball\MyBallManager.cpp" />
+    <ClCompile Include="..\Classes\Collision\MyContactListener.cpp" />
+    <ClCompile Include="..\Classes\Controller\MyController.cpp" />
+    <ClCompile Include="..\Classes\Gimmick\GimmickAccelerate.cpp" />
+    <ClCompile Include="..\Classes\Gimmick\GimmickBase.cpp" />
+    <ClCompile Include="..\Classes\Gimmick\GimmickManager.cpp" />
+    <ClCompile Include="..\Classes\Gimmick\MyGoal.cpp" />
     <ClCompile Include="..\Classes\GlobalInfo.cpp" />
-    <ClCompile Include="..\Classes\MyBall.cpp" />
-    <ClCompile Include="..\Classes\MyBallManager.cpp" />
-    <ClCompile Include="..\Classes\MyContactListener.cpp" />
-    <ClCompile Include="..\Classes\MyController.cpp" />
-    <ClCompile Include="..\Classes\MyDrawNode.cpp" />
-    <ClCompile Include="..\Classes\MyFieldManager.cpp" />
-    <ClCompile Include="..\Classes\MyGoal.cpp" />
-    <ClCompile Include="..\Classes\MyNode.cpp" />
-    <ClCompile Include="..\Classes\MySceneStageSelect.cpp" />
-    <ClCompile Include="..\Classes\MySceneTitle.cpp" />
-    <ClCompile Include="..\Classes\MySpriteNode.cpp" />
-    <ClCompile Include="..\Classes\SceneBase.cpp" />
-    <ClCompile Include="..\Classes\SceneGameMain.cpp" />
+    <ClCompile Include="..\Classes\Node\MyDrawNode.cpp" />
+    <ClCompile Include="..\Classes\Node\MyNode.cpp" />
+    <ClCompile Include="..\Classes\Node\MySpriteNode.cpp" />
+    <ClCompile Include="..\Classes\Scene\MySceneStageSelect.cpp" />
+    <ClCompile Include="..\Classes\Scene\MySceneTitle.cpp" />
+    <ClCompile Include="..\Classes\Scene\SceneBase.cpp" />
+    <ClCompile Include="..\Classes\Scene\SceneGameMain.cpp" />
+    <ClCompile Include="..\Classes\Stage\MyFieldManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\AppHeader.h" />
-    <ClInclude Include="..\Classes\GimmickAccelerate.h" />
-    <ClInclude Include="..\Classes\GimmickBase.h" />
-    <ClInclude Include="..\Classes\GimmickManager.h" />
+    <ClInclude Include="..\Classes\Ball\MyBall.h" />
+    <ClInclude Include="..\Classes\Ball\MyBallManager.h" />
+    <ClInclude Include="..\Classes\Collision\MyContactListener.h" />
+    <ClInclude Include="..\Classes\Controller\MyController.h" />
+    <ClInclude Include="..\Classes\Gimmick\GimmickAccelerate.h" />
+    <ClInclude Include="..\Classes\Gimmick\GimmickBase.h" />
+    <ClInclude Include="..\Classes\Gimmick\GimmickManager.h" />
+    <ClInclude Include="..\Classes\Gimmick\MyGoal.h" />
     <ClInclude Include="..\Classes\GlobalInfo.h" />
-    <ClInclude Include="..\Classes\MyBall.h" />
-    <ClInclude Include="..\Classes\MyBallManager.h" />
-    <ClInclude Include="..\Classes\MyContactListener.h" />
-    <ClInclude Include="..\Classes\MyController.h" />
-    <ClInclude Include="..\Classes\MyDrawNode.h" />
-    <ClInclude Include="..\Classes\MyFieldManager.h" />
-    <ClInclude Include="..\Classes\MyGoal.h" />
-    <ClInclude Include="..\Classes\MyNode.h" />
-    <ClInclude Include="..\Classes\MySceneStageSelect.h" />
-    <ClInclude Include="..\Classes\MySceneTitle.h" />
-    <ClInclude Include="..\Classes\MySpriteNode.h" />
-    <ClInclude Include="..\Classes\SceneBase.h" />
-    <ClInclude Include="..\Classes\SceneGameMain.h" />
+    <ClInclude Include="..\Classes\Node\MyDrawNode.h" />
+    <ClInclude Include="..\Classes\Node\MyNode.h" />
+    <ClInclude Include="..\Classes\Node\MySpriteNode.h" />
+    <ClInclude Include="..\Classes\Scene\MySceneStageSelect.h" />
+    <ClInclude Include="..\Classes\Scene\MySceneTitle.h" />
+    <ClInclude Include="..\Classes\Scene\SceneBase.h" />
+    <ClInclude Include="..\Classes\Scene\SceneGameMain.h" />
+    <ClInclude Include="..\Classes\Stage\MyFieldManager.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

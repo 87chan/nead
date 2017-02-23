@@ -1,7 +1,7 @@
 #include "MyController.h"
 #include "AppHeader.h"
-#include "MyBall.h"
-#include "MyBallManager.h"
+#include "Ball/MyBallManager.h"
+#include "Ball/MyBall.h"
 
 USING_NS_CC;
 
