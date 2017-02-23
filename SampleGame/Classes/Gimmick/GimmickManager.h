@@ -1,27 +1,35 @@
 #pragma once
 
 #include "cocos2d.h"
-
-class GimmickBase;
+#include "AppHeader.h"
+#include "GimmickBase.h"
 
 class GimmickManager
 {
 public:
 	GimmickManager();
-	~GimmickManager();
+	~GimmickManager() {}
+
+	void Initialize(b2World* world, cocos2d::CCNode* parentNode);
+	void Finalize();
 
 	// ÉMÉ~ÉbÉNÇçÏê¨.
 	template<class T>
-	void CreateGimmick(T gimmick)
+	void CreateGimmick()
 	{
-		GimmickBase* gimmick = T::create();
-		CC_ASSERT(gimmck);
+		GimmickBase* gimmick = AppUtil::createNode<T>();
+		CC_ASSERT(gimmick);
+
+		gimmick->Initialize(WorldRef, ParentRef);
 
 		GimmickList.push_back(gimmick);
 	}
 
 private:
-	std::vector<GimmickBase*> GimmickList;
+	b2World*					WorldRef;
+	cocos2d::CCNode*			ParentRef;
+
+	std::vector<GimmickBase*>	GimmickList;
 };
 
 /**************************************************************************************************

@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "Scene/MySceneTitle.h"
+#include "AppHeader.h"
 
 USING_NS_CC;
 
@@ -75,7 +76,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = SceneUtil::createScene<MySceneTitle>();
+    auto scene = AppUtil::createNode<MySceneTitle>();
 
     // run
     director->runWithScene(scene);

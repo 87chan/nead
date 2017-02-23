@@ -9,6 +9,8 @@
 #include "Ball/MyBallManager.h"
 #include "Stage/MyFieldManager.h"
 #include "Gimmick/MyGoal.h"
+#include "Gimmick/GimmickManager.h"
+#include "Gimmick/GimmickAccelerate.h"
 
 USING_NS_CC;
 
@@ -119,16 +121,23 @@ void SceneGameMain::Start()
 	FieldMgr->Initialize(World, this);
 
 	// ボール管理者.
-	if (!BallMgr)
+	if (BallMgr)
 	{
-		BallMgr.reset(new MyBallManager());
-		Controller->EntryBallMgr(BallMgr.get());
-
-		BallMgr->ResetCallback();
-		BallMgr->SetCallback(this, &SceneGameMain::GameOverCallback);
+		BallMgr->Finalize(World, this);
 	}
-	BallMgr->Finalize(World, this);
+	BallMgr.reset(new MyBallManager());
+	Controller->EntryBallMgr(BallMgr.get());
+	BallMgr->ResetCallback();
+	BallMgr->SetCallback(this, &SceneGameMain::GameOverCallback);
 
+	// ギミック管理者.
+	if (GimmickMgr)
+	{
+		GimmickMgr->Finalize();
+	}
+	GimmickMgr.reset(new GimmickManager());
+	GimmickMgr->Initialize(World, this);
+	// GimmickMgr->CreateGimmick<GimmickAccelerate>();
 
 	Vec2 ballPos_1, ballPos_2;
 	bool bSelect_1 = false, bSelect_2 = false;

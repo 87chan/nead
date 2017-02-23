@@ -46,6 +46,36 @@ private:
 	T Func;
 };
 
+namespace AppUtil
+{
+	template<class T>
+	static T* create()
+	{
+		T *pRet = new(std::nothrow) T();
+		if (pRet && pRet->init())
+		{
+			pRet->autorelease();
+			return pRet;
+		}
+		else
+		{
+			delete pRet;
+			pRet = nullptr;
+			return nullptr;
+		}
+	}
+
+	// 派生クラスに都度「create***」関数を作成するのが手間な為.
+	// テンプレートを用いる.
+	// SceneBase::createNode<派生クラス>();
+	template<class T>
+	static T* createNode()
+	{
+		auto node = create<T>();
+		return node;
+	}
+}
+
 /**************************************************************************************************
 * EOF
 **************************************************************************************************/

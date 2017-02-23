@@ -8,6 +8,7 @@ class MyContactListener;
 class MyController;
 class MyFieldManager;
 class MyBallManager;
+class GimmickManager;
 class MyDrawNode;
 class MyBall;
 class MyGoal;
@@ -49,6 +50,7 @@ private:
 
 	MyFieldManager*					FieldMgr;
 	std::shared_ptr<MyBallManager>	BallMgr;
+	std::shared_ptr<GimmickManager>	GimmickMgr;
 	MyBall*							BallNode1;
 	MyBall*							BallNode2;
 	MyGoal*							GoalNode;
