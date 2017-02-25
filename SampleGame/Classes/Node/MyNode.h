@@ -11,7 +11,8 @@ public:
 
 	virtual void Initialize(b2World* world, cocos2d::CCNode* parentNode);
 	virtual void Finalize(b2World* world, cocos2d::CCNode* parentNode);
-	virtual void UpdateBody(float dt) {}
+	virtual void UpdateBody(float delta) {}
+	virtual void Update(float delta) {}
 	void Remove();
 
 	b2Body*	GetBodyData() { return BodyData; }

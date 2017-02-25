@@ -25,7 +25,7 @@ public:
 		CC_ASSERT(gimmick);
 
 		gimmick->Initialize(WorldRef, ParentRef);
-		gimmick->setPosition(pos);
+		gimmick->SetDrawPos(pos);
 
 		// ボールの数だけコールバックを設定.
 		std::vector<MyBall*> ballList = ballMgr->GetBallList();

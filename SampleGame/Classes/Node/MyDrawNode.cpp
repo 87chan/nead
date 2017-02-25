@@ -36,6 +36,14 @@ void MyDrawNode::UpdateBody(float dt)
 	DrawData->setRotation(rotation);
 }
 
+void MyDrawNode::SetDrawPos(cocos2d::Vec2 pos)
+{
+	if (BodyData)
+	{
+		BodyData->SetTransform(b2Vec2(pos.x / PTM_RATIO, pos.y / PTM_RATIO), 0.0f);
+	}
+}
+
 /**************************************************************************************************
 * EOF
 **************************************************************************************************/

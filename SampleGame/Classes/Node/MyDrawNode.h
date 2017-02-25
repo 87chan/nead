@@ -16,10 +16,12 @@ public:
 	virtual void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
 	virtual void UpdateBody(float dt) override;
 
-	void clear() { DrawData->clear(); }
-	void drawLine(const cocos2d::Vec2 &origin, const cocos2d::Vec2 &destination, const cocos2d::Color4F &color){ DrawData->drawLine(origin, destination, color); }
-	void drawCirlce(const cocos2d::Vec2 &center, float radius, float angle, unsigned int segments, bool drawLineToCenter, const cocos2d::Color4F &color) { DrawData->drawCircle(center, radius, angle, segments, drawLineToCenter, color); }
+	void Clear() { DrawData->clear(); }
+	void DrawLine(const cocos2d::Vec2 &origin, const cocos2d::Vec2 &destination, const cocos2d::Color4F &color){ DrawData->drawLine(origin, destination, color); }
+	void DrawCirlce(const cocos2d::Vec2& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, const cocos2d::Color4F& color) { DrawData->drawCircle(center, radius, angle, segments, drawLineToCenter, color); }
+	void DrawRect(const cocos2d::Vec2& pos1, const cocos2d::Vec2& pos2, const cocos2d::Vec2& pos3, const cocos2d::Vec2& pos4, const cocos2d::Color4F& color) { DrawData->drawRect(pos1, pos2, pos3, pos4, color); }
 
+	void SetDrawPos(cocos2d::Vec2 pos);
 	cocos2d::Vec2 GetDrawPos()const { return DrawData->getPosition(); }
 
 protected:

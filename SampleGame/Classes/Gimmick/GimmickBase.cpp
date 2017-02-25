@@ -13,9 +13,14 @@ void GimmickBase::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 	MyDrawNode::Finalize(world, parentNode);
 }
 
-void GimmickBase::UpdateBody(float dt)
+void GimmickBase::UpdateBody(float delta)
 {
-	MyDrawNode::UpdateBody(dt);
+	MyDrawNode::UpdateBody(delta);
+}
+
+void GimmickBase::Update(float delta)
+{
+	this->UpdateBody(delta);
 }
 
 /**************************************************************************************************

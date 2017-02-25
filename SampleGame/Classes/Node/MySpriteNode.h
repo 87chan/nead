@@ -14,7 +14,7 @@ public:
 
 	virtual void Initialize(b2World* world, cocos2d::CCNode* parentNode) override;
 	virtual void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
-	virtual void UpdateBody(float dt) override;
+	virtual void UpdateBody(float delta) override;
 
 	void initWithTexture(cocos2d::Texture2D* tex) { SpriteData->initWithTexture(tex); }
 

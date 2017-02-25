@@ -76,6 +76,8 @@ void SceneGameMain::update(float delta)
 
 	BallMgr->Update(delta);
 
+	GimmickMgr->Update(delta);
+
 	// ガイドの更新.
 	float length = std::min(Controller->GetShotDirection().length(), MAX_LENGTH);
 	cocos2d::Vec2 shotDirection = Controller->GetShotDirection();
@@ -87,11 +89,11 @@ void SceneGameMain::update(float delta)
 		Vec2 forwardPos = playerPos + (shotDirection * length * 0.5f);
 		Vec2 backPos = playerPos + (-shotDirection * length * 0.5f);
 
-		LineShotDirection->clear();
+		LineShotDirection->Clear();
 
 		if (Controller->GetIsTouch())
 		{
-			LineShotDirection->drawLine(backPos, forwardPos, ccColor4F::BLUE);
+			LineShotDirection->DrawLine(backPos, forwardPos, ccColor4F::BLUE);
 		}
 	}
 }
@@ -181,7 +183,7 @@ void SceneGameMain::Start()
 	}
 	GimmickMgr.reset(new GimmickManager());
 	GimmickMgr->Initialize(World, this);
-	GimmickMgr->CreateGimmick<GimmickAccelerate>(BallMgr.get(), Vec2(0.0f, 0.0f));
+	GimmickMgr->CreateGimmick<GimmickAccelerate>(BallMgr.get(), Vec2(200.0f, 100.0f));
 
 	// ゴール.
 	if (GoalNode)

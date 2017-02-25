@@ -17,12 +17,11 @@ void GimmickAccelerate::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 	Vec2 pos = Vec2(200.0f, 100.0f);
 
 	DrawData = cocos2d::CCDrawNode::create();
-
-	DrawData->drawRect(
-		Vec2(pos.x - s * 0.5f, pos.y - s * 0.5f),
-		Vec2(pos.x - s * 0.5f,pos.y + s * 0.5f),
-		Vec2(pos.x + s * 0.5f, pos.y + s * 0.5f),
-		Vec2(pos.x + s * 0.5f,pos.y - s * 0.5f),
+	this->DrawRect(
+		Vec2(-s * 0.5f, -s * 0.5f),
+		Vec2(-s * 0.5f,s * 0.5f),
+		Vec2(s * 0.5f, s * 0.5f),
+		Vec2(s * 0.5f, -s * 0.5f),
 		ccColor4F::BLUE);
 	this->addChild(DrawData);
 
@@ -76,7 +75,7 @@ void GimmickAccelerate::OnContactBegin(b2Body* body1, b2Body* body2)
 	GimmickBase::OnContactBegin(body1, body2);
 
 	// 引数からボールのb2bodyを取得し、一度だけ力を加える.
-	// log("OnContactBegin Accel");
+	log("OnContactBegin Accel");
 }
 
 /**************************************************************************************************

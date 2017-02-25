@@ -22,9 +22,9 @@ void MySpriteNode::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 	MyNode::Finalize(world, parentNode);
 }
 
-void MySpriteNode::UpdateBody(float dt)
+void MySpriteNode::UpdateBody(float delta)
 {
-	MyNode::UpdateBody(dt);
+	MyNode::UpdateBody(delta);
 
 	Vec2 position = Vec2(BodyData->GetPosition().x * PTM_RATIO, BodyData->GetPosition().y * PTM_RATIO);
 	float rotation = -1 * CC_RADIANS_TO_DEGREES(BodyData->GetAngle());

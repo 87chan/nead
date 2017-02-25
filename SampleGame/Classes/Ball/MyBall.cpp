@@ -118,10 +118,10 @@ void MyBall::Update(float dt)
 	this->UpdateShotNum();
 
 	Vec2 pos = this->GetSpritePos();
-	CircleSelected->clear();
+	CircleSelected->Clear();
 	if (bSelected)
 	{
-		CircleSelected->drawCirlce(
+		CircleSelected->DrawCirlce(
 			pos,
 			this->GetSpriteWidth() * 0.5f + SELECTED_CIRCLE_RADUIS_OFFSET,
 			0.0f,
