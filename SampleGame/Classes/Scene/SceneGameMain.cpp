@@ -202,7 +202,7 @@ void SceneGameMain::Start()
 			param.body1 = ball->GetBodyData();
 			param.body2 = GoalNode->GetBodyData();
 			param.timing = ContactTiming::BEGIN;
-			param.SetCallback(this, &SceneGameMain::ClearCallback);
+			param.callback = CC_CALLBACK_2(SceneGameMain::ClearCallback, this);
 			MyContactListener::GetInstance()->EntryContactCallBack(param);
 		}
 	}
@@ -217,7 +217,7 @@ void SceneGameMain::Start()
 	LineShotDirection->Initialize(World, this);
 }
 
-void SceneGameMain::ClearCallback()
+void SceneGameMain::ClearCallback(b2Body* body1, b2Body* b2)
 {
 	this->GameEnd(GAME_STATE::GAME_CLEAR);
 }

@@ -16,23 +16,20 @@ namespace ContactTiming
 	};
 }
 
+typedef std::function<void(b2Body*, b2Body*)> ContactCallback;
+
 struct ContactEntryParam
 {
 	ContactEntryParam()
 		: body1(nullptr)
 		, body2(nullptr)
+		, timing(ContactTiming::NONE)
 	{}
-
-	template <class C, class T>
-	void SetCallback(C& obj,T func)
-	{
-		callback = new MyCallback<C, T>(obj, func);
-	}
 
 	b2Body* body1;
 	b2Body* body2;
 	ContactTiming::CONTACT_TIMING timing;
-	MyCallbackBase* callback;
+	ContactCallback callback;
 };
 
 class MyContactListener : public b2ContactListener
