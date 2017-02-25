@@ -103,6 +103,9 @@ void SceneGameMain::Start()
 	TMXTiledMap* pMap = TMXTiledMap::create(filePath);
 	this->addChild(pMap);
 
+	// コールバックの解除.
+	MyContactListener::GetInstance()->RemoveContactCallback();
+
 	if (!Controller)
 	{
 		Controller = new MyController();
@@ -127,15 +130,6 @@ void SceneGameMain::Start()
 	Controller->EntryBallMgr(BallMgr.get());
 	BallMgr->ResetCallback();
 	BallMgr->SetCallback(this, &SceneGameMain::GameOverCallback);
-
-	// ギミック管理者.
-	if (GimmickMgr)
-	{
-		GimmickMgr->Finalize();
-	}
-	GimmickMgr.reset(new GimmickManager());
-	GimmickMgr->Initialize(World, this);
-	// GimmickMgr->CreateGimmick<GimmickAccelerate>();
 
 	Vec2 ballPos_1, ballPos_2;
 	bool bSelect_1 = false, bSelect_2 = false;
@@ -180,6 +174,15 @@ void SceneGameMain::Start()
 	BallNode2->SetSelect(bSelect_2);
 	BallMgr->EntryBallNode(BallNode2);
 
+	// ギミック管理者.
+	if (GimmickMgr)
+	{
+		GimmickMgr->Finalize();
+	}
+	GimmickMgr.reset(new GimmickManager());
+	GimmickMgr->Initialize(World, this);
+	GimmickMgr->CreateGimmick<GimmickAccelerate>(BallMgr.get(), Vec2(0.0f, 0.0f));
+
 	// ゴール.
 	if (GoalNode)
 	{
@@ -190,7 +193,6 @@ void SceneGameMain::Start()
 	GoalNode->Initialize(World, this);
 
 	// 衝突時のコールバック登録.
-	MyContactListener::GetInstance()->RemoveContactCallback();
 	std::vector<MyBall*> list = BallMgr->GetBallList();
 	std::vector<MyBall*>::iterator it = list.begin();
 	for (; it != list.end(); ++it)
@@ -217,7 +219,7 @@ void SceneGameMain::Start()
 	LineShotDirection->Initialize(World, this);
 }
 
-void SceneGameMain::ClearCallback(b2Body* body1, b2Body* b2)
+void SceneGameMain::ClearCallback(b2Body* body1, b2Body* body2)
 {
 	this->GameEnd(GAME_STATE::GAME_CLEAR);
 }

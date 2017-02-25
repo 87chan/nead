@@ -15,10 +15,10 @@ public:
 	virtual void UpdateBody(float dt) override;
 
 	// ‰½‚©‚ÉG‚ê‚ç‚ê‚½‚ÉŒÄ‚Î‚ê‚éˆ—.
-	virtual void OnContactBegin() {};
+	virtual void OnContactBegin(b2Body* body1, b2Body* body2) {}
 	
 	// ‰½‚©‚ª—£‚ê‚½‚ÉŒÄ‚Î‚ê‚éˆ—.
-	virtual void OnContactEnd() {};
+	virtual void OnContactEnd(b2Body* body1, b2Body* body2) {}
 };
 
 /**************************************************************************************************

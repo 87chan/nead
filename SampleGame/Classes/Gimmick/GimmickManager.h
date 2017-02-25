@@ -5,6 +5,8 @@
 #include "GimmickBase.h"
 #include "ManagerBase/ManagerBase.h"
 
+class MyBallManager;
+
 class GimmickManager : ManagerBase
 {
 public:
@@ -17,12 +19,34 @@ public:
 
 	// ギミックを作成.
 	template<class T>
-	void CreateGimmick()
+	void CreateGimmick(MyBallManager* ballMgr, cocos2d::Vec2 pos)
 	{
 		GimmickBase* gimmick = AppUtil::createNode<T>();
 		CC_ASSERT(gimmick);
 
 		gimmick->Initialize(WorldRef, ParentRef);
+		gimmick->setPosition(pos);
+
+		// ボールの数だけコールバックを設定.
+		std::vector<MyBall*> ballList = ballMgr->GetBallList();
+		std::vector<MyBall*>::iterator it = ballList.begin();
+		for (; it != ballList.end(); ++it)
+		{
+			if (MyBall* ball = (*it))
+			{
+				ContactEntryParam param;
+				param.body1 = ball->GetBodyData();
+				param.body2 = gimmick->GetBodyData();
+
+				param.timing = ContactTiming::BEGIN;
+				param.callback = CC_CALLBACK_2(GimmickBase::OnContactBegin, gimmick);
+				MyContactListener::GetInstance()->EntryContactCallBack(param);
+
+				param.timing = ContactTiming::END;
+				param.callback = CC_CALLBACK_2(GimmickBase::OnContactEnd, gimmick);
+				MyContactListener::GetInstance()->EntryContactCallBack(param);
+			}
+		}
 
 		GimmickList.push_back(gimmick);
 	}

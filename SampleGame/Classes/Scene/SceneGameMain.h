@@ -35,7 +35,7 @@ public:
 
 	void Start();
 
-	void ClearCallback(b2Body* body1, b2Body* b2);
+	void ClearCallback(b2Body* body1, b2Body* body2);
 	void GameOverCallback();
 	void GameEnd(GAME_STATE state);
 

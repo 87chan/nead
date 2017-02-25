@@ -8,13 +8,13 @@ class GimmickAccelerate : public GimmickBase
 {
 public:
 	GimmickAccelerate();
-	~GimmickAccelerate();
+	~GimmickAccelerate() {}
 
 	void Initialize(b2World* world, cocos2d::CCNode* parentNode) override;
 	void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
 	void UpdateBody(float dt) override;
 
-	void OnContactBegin();
+	void OnContactBegin(b2Body* body1, b2Body* body2) override;
 };
 
 /**************************************************************************************************
