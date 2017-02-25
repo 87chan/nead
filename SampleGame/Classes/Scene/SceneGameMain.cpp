@@ -16,7 +16,6 @@ USING_NS_CC;
 
 SceneGameMain::SceneGameMain()
 : World(nullptr)
-, ContactListener(nullptr)
 , Controller(nullptr)
 , FieldMgr(nullptr)
 , BallNode1(nullptr)
@@ -41,8 +40,7 @@ void SceneGameMain::Initialize()
 	World->SetContinuousPhysics(true);
 
 	// 衝突を検知する.
-	ContactListener = new MyContactListener();
-	World->SetContactListener(ContactListener);
+	World->SetContactListener(MyContactListener::GetInstance());
 
 	GameEndrLabel = cocos2d::LabelTTF::create("", "Arial", 24);
 	GameEndrLabel->setPosition(size.width * 0.5f, size.height * 0.5f);
@@ -192,7 +190,7 @@ void SceneGameMain::Start()
 	GoalNode->Initialize(World, this);
 
 	// 衝突時のコールバック登録.
-	ContactListener->RemoveContactCallback();
+	MyContactListener::GetInstance()->RemoveContactCallback();
 	std::vector<MyBall*> list = BallMgr->GetBallList();
 	std::vector<MyBall*>::iterator it = list.begin();
 	for (; it != list.end(); ++it)
@@ -205,7 +203,7 @@ void SceneGameMain::Start()
 			param.body2 = GoalNode->GetBodyData();
 			param.timing = ContactTiming::BEGIN;
 			param.SetCallback(this, &SceneGameMain::ClearCallback);
-			ContactListener->EntryContactCallBack(param);
+			MyContactListener::GetInstance()->EntryContactCallBack(param);
 		}
 	}
 

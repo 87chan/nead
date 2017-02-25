@@ -38,8 +38,15 @@ struct ContactEntryParam
 class MyContactListener : public b2ContactListener
 {
 public:
-	MyContactListener();
-	~MyContactListener();
+	static MyContactListener* GetInstance()
+	{
+		if (!Instance)
+		{
+			Instance.reset(new MyContactListener());
+		}
+
+		return Instance.get();
+	}
 
 	void EntryContactCallBack(ContactEntryParam param) { ParamList.push_back(param); }
 	void RemoveContactCallback() { ParamList.clear(); }
@@ -50,6 +57,11 @@ public:
 	// Õ“Ë‚ªI‚í‚Á‚½‚ÉÀs.
 	virtual void EndContact(b2Contact* contact);
 
+private:
+	MyContactListener() {}
+	static std::shared_ptr<MyContactListener> Instance;
+
+private:
 	std::vector<ContactEntryParam> ParamList;
 };
 

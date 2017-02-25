@@ -1,12 +1,6 @@
 #include "MyContactListener.h"
 
-MyContactListener::MyContactListener()
-{
-}
-
-MyContactListener::~MyContactListener()
-{
-}
+std::shared_ptr<MyContactListener> MyContactListener::Instance;
 
 void MyContactListener::BeginContact(b2Contact* contact)
 {

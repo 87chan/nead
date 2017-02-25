@@ -44,8 +44,6 @@ public:
 
 private:
 	b2World* World;
-
-	MyContactListener*				ContactListener;
 	MyController*					Controller;
 
 	MyFieldManager*					FieldMgr;
