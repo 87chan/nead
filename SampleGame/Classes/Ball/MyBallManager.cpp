@@ -4,37 +4,47 @@
 USING_NS_CC;
 
 MyBallManager::MyBallManager()
-: callbackGameOver(nullptr)
 {
 }
 
-MyBallManager::~MyBallManager()
+void MyBallManager::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 {
+	ManagerBase::Initialize(world, parentNode);
 }
 
-void MyBallManager::EntryBallNode(MyBall* ball)
+void MyBallManager::Update(float delta)
 {
-	BallNodeList.push_back(ball);
-}
+	ManagerBase::Update(delta);
 
-void MyBallManager::Finalize(b2World* world, cocos2d::CCNode* parentNode)
-{
 	std::vector<MyBall*>::iterator it = BallNodeList.begin();
 	for (; it != BallNodeList.end(); ++it)
 	{
-		(*it)->Finalize(world, parentNode);
+		(*it)->Update(delta);
+	}
+}
+
+void MyBallManager::Finalize()
+{
+	ManagerBase::Finalize();
+
+	std::vector<MyBall*>::iterator it = BallNodeList.begin();
+	for (; it != BallNodeList.end(); ++it)
+	{
+		(*it)->Finalize(WorldRef, ParentRef);
 	}
 
 	BallNodeList.clear();
 }
 
-void MyBallManager::Update(float dt)
+void MyBallManager::CreateBall(const cocos2d::Vec2& pos, int shotNum, bool select)
 {
-	std::vector<MyBall*>::iterator it = BallNodeList.begin();
-	for (; it != BallNodeList.end(); ++it)
-	{
-		(*it)->Update(dt);
-	}
+	MyBall* ball = MyBall::create();
+	CC_ASSERT(ball);
+
+	ball->Initialize(WorldRef, ParentRef, this, pos, shotNum);
+	ball->SetSelect(select);
+
+	BallNodeList.push_back(ball);
 }
 
 bool MyBallManager::CheckAllFinish()

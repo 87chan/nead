@@ -4,30 +4,26 @@
 #include "Box2D/Box2D.h"
 #include "MyBall.h"
 #include "AppHeader.h"
+#include "ManagerBase/ManagerBase.h"
 
-class MyBallManager
+class MyBallManager : public ManagerBase
 {
 public:
 	MyBallManager();
-	~MyBallManager();
+	~MyBallManager() {}
 
-	void EntryBallNode(MyBall* ball);
-	void Finalize(b2World* world, cocos2d::CCNode* parentNode);
-	void Update(float dt);
+	void Initialize(b2World* world, cocos2d::CCNode* parentNode) override;
+	void Update(float delta) override;
+	void Finalize() override;
 
+	// ボール生成関数.
+	void CreateBall(const cocos2d::Vec2& pos, int shotNum, bool select);
+
+	// 全ての玉の残数が「0」になったか.
 	bool CheckAllFinish();
 
+	// 全ての玉の選択状態を初期化.
 	void ResetAllSelected();
-
-	void ResetCallback() { CC_SAFE_DELETE(callbackGameOver); }
-
-	template <class C, class T>
-	void SetCallback(C& obj, T func)
-	{
-		callbackGameOver = new MyCallback<C, T>(obj, func);
-	}
-
-	void ExecuteCallback() { callbackGameOver->Execute(); }
 
 	std::vector<MyBall*> GetBallList() { return BallNodeList; }
 	MyBall* GetSelectedBall();
@@ -35,7 +31,6 @@ public:
 
 private:
 	std::vector<MyBall*> BallNodeList;
-	MyCallbackBase* callbackGameOver;
 };
 
 /**************************************************************************************************

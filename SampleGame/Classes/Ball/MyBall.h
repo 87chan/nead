@@ -15,7 +15,7 @@ public:
 
 	CREATE_FUNC(MyBall);
 
-	void Initialize(b2World* world, cocos2d::CCNode* parentNode, std::shared_ptr<MyBallManager> ballMgr, const cocos2d::Vec2& pos,int shotNum);
+	void Initialize(b2World* world, cocos2d::CCNode* parentNode, MyBallManager* ballMgr, const cocos2d::Vec2& pos,int shotNum);
 	void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
 	void Update(float dt);
 	void UpdateShotNum();
@@ -29,7 +29,7 @@ public:
 	void SetSelect(bool select) { bSelected = select; }
 
 private:
-	std::shared_ptr<MyBallManager>	BallMgrRef;
+	MyBallManager*					BallMgrRef;
 
 	cocos2d::CCSpriteBatchNode*		SpriteBatchNode;
 

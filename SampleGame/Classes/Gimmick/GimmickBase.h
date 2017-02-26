@@ -22,9 +22,6 @@ public:
 	
 	// ‰½‚©‚ª—£‚ê‚½‚ÉŒÄ‚Î‚ê‚éˆ—.
 	virtual void OnContactEnd(b2Body* body1, b2Body* body2) {}
-
-protected:
-	cocos2d::CCNode*	ParentRef;
 };
 
 /**************************************************************************************************

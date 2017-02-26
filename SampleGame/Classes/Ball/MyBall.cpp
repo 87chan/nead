@@ -1,6 +1,7 @@
 #include "MyBall.h"
 #include "AppHeader.h"
 #include "MyBallManager.h"
+#include "Scene/SceneGameMain.h"
 
 USING_NS_CC;
 
@@ -23,7 +24,7 @@ MyBall::~MyBall()
 {
 }
 
-void MyBall::Initialize(b2World* world, cocos2d::CCNode* parentNode, std::shared_ptr<MyBallManager> ballMgr, const cocos2d::Vec2& pos, int shotNum)
+void MyBall::Initialize(b2World* world, cocos2d::CCNode* parentNode, MyBallManager* ballMgr, const cocos2d::Vec2& pos, int shotNum)
 {
 	MySpriteNode::Initialize(world, parentNode);
 
@@ -106,9 +107,14 @@ void MyBall::Update(float dt)
 			bStandby = true;
 
 			this->ConsumeLeftShotNum();
+
 			if (BallMgrRef->CheckAllFinish())
 			{
-				BallMgrRef->ExecuteCallback();
+				// ゲームオーバー.
+				if (SceneGameMain* sceneMain = static_cast<SceneGameMain*>(this->getParent()))
+				{
+					sceneMain->GameOverCallback();
+				};
 			}
 		}
 	}

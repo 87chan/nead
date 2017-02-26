@@ -125,12 +125,11 @@ void SceneGameMain::Start()
 	// ボール管理者.
 	if (BallMgr)
 	{
-		BallMgr->Finalize(World, this);
+		BallMgr->Finalize();
 	}
 	BallMgr.reset(new MyBallManager());
+	BallMgr->Initialize(World, this);
 	Controller->EntryBallMgr(BallMgr.get());
-	BallMgr->ResetCallback();
-	BallMgr->SetCallback(this, &SceneGameMain::GameOverCallback);
 
 	Vec2 ballPos_1, ballPos_2;
 	bool bSelect_1 = false, bSelect_2 = false;
@@ -163,17 +162,9 @@ void SceneGameMain::Start()
 		}
 	}
 
-	// ボール1.
-	BallNode1 = MyBall::create();
-	BallNode1->Initialize(World, this, BallMgr, ballPos_1, shotNum_1);
-	BallNode1->SetSelect(bSelect_1);
-	BallMgr->EntryBallNode(BallNode1);
-
-	// ボール2.
-	BallNode2 = MyBall::create();
-	BallNode2->Initialize(World, this, BallMgr, ballPos_2, shotNum_2);
-	BallNode2->SetSelect(bSelect_2);
-	BallMgr->EntryBallNode(BallNode2);
+	// ボール作成.
+	BallMgr->CreateBall(ballPos_1, shotNum_1, bSelect_1);
+	BallMgr->CreateBall(ballPos_2, shotNum_2, bSelect_2);
 
 	// ギミック管理者.
 	if (GimmickMgr)

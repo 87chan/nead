@@ -65,7 +65,7 @@ void GimmickGoal::OnContactBegin(b2Body* body1, b2Body* body2)
 	GimmickBase::OnContactBegin(body1, body2);
 
 	// ステージクリア.
-	if (SceneGameMain* sceneMain = static_cast<SceneGameMain*>(ParentRef))
+	if (SceneGameMain* sceneMain = static_cast<SceneGameMain*>(this->getParent()))
 	{
 		sceneMain->ClearCallback();
 	}
