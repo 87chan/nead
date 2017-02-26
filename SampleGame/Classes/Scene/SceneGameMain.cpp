@@ -44,7 +44,7 @@ void SceneGameMain::Initialize()
 	GameEndLabel = cocos2d::LabelTTF::create("", "Arial", 24);
 	GameEndLabel->setPosition(size.width * 0.5f, size.height * 0.5f);
 	GameEndLabel->setVisible(false);
-	this->addChild(GameEndLabel);
+	this->addChild(GameEndLabel, MENU_LAYER);
 
 	// リトライボタンを作成.
 	MenuItemImage* retryItem = MenuItemImage::create(
