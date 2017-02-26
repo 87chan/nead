@@ -1,5 +1,6 @@
 #include "GimmickAccelerate.h"
 #include "AppHeader.h"
+#include "Ball/MyBall.h"
 
 USING_NS_CC;
 
@@ -74,8 +75,25 @@ void GimmickAccelerate::OnContactBegin(b2Body* body1, b2Body* body2)
 {
 	GimmickBase::OnContactBegin(body1, body2);
 
+	static float POWER = 1000;
+
 	// 引数からボールのb2bodyを取得し、一度だけ力を加える.
-	log("OnContactBegin Accel");
+	MyBall* ball1 = static_cast<MyBall*>(body1->GetUserData());
+	MyBall* ball2 = static_cast<MyBall*>(body2->GetUserData());
+	if (ball1 && ball1->getTag() == TAG_BALL)
+	{
+		b2Vec2 power = body1->GetLinearVelocity();
+		power.x *= POWER;
+		power.y *= POWER;
+		body1->SetLinearVelocity(power);
+	}
+	else if (ball2 && ball2->getTag() == TAG_BALL)
+	{
+		b2Vec2 power = body2->GetLinearVelocity();
+		power.x *= POWER;
+		power.y *= POWER;
+		body2->SetLinearVelocity(power);
+	}
 }
 
 /**************************************************************************************************
