@@ -19,13 +19,12 @@ public:
 
 	// ギミックを作成.
 	template<class T>
-	void CreateGimmick(MyBallManager* ballMgr, cocos2d::Vec2 pos)
+	void CreateGimmick(MyBallManager* ballMgr, cocos2d::Vec2 pos,float size)
 	{
 		GimmickBase* gimmick = AppUtil::createNode<T>();
 		CC_ASSERT(gimmick);
 
-		gimmick->Initialize(WorldRef, ParentRef);
-		gimmick->SetDrawPos(pos);
+		gimmick->Initialize(WorldRef, ParentRef, pos, size);
 
 		// ボールの数だけコールバックを設定.
 		std::vector<MyBall*> ballList = ballMgr->GetBallList();

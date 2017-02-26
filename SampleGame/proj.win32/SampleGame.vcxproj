@@ -151,8 +151,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Controller\MyController.cpp" />
     <ClCompile Include="..\Classes\Gimmick\GimmickAccelerate.cpp" />
     <ClCompile Include="..\Classes\Gimmick\GimmickBase.cpp" />
+    <ClCompile Include="..\Classes\Gimmick\GimmickGoal.cpp" />
     <ClCompile Include="..\Classes\Gimmick\GimmickManager.cpp" />
-    <ClCompile Include="..\Classes\Gimmick\MyGoal.cpp" />
     <ClCompile Include="..\Classes\GlobalInfo.cpp" />
     <ClCompile Include="..\Classes\ManagerBase\ManagerBase.cpp" />
     <ClCompile Include="..\Classes\Node\MyDrawNode.cpp" />
@@ -174,8 +174,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Controller\MyController.h" />
     <ClInclude Include="..\Classes\Gimmick\GimmickAccelerate.h" />
     <ClInclude Include="..\Classes\Gimmick\GimmickBase.h" />
+    <ClInclude Include="..\Classes\Gimmick\GimmickGoal.h" />
     <ClInclude Include="..\Classes\Gimmick\GimmickManager.h" />
-    <ClInclude Include="..\Classes\Gimmick\MyGoal.h" />
     <ClInclude Include="..\Classes\GlobalInfo.h" />
     <ClInclude Include="..\Classes\ManagerBase\ManagerBase.h" />
     <ClInclude Include="..\Classes\Node\MyDrawNode.h" />

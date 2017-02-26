@@ -8,21 +8,16 @@ GimmickAccelerate::GimmickAccelerate()
 {
 }
 
-void GimmickAccelerate::Initialize(b2World* world, cocos2d::CCNode* parentNode)
+void GimmickAccelerate::Initialize(b2World* world, cocos2d::CCNode* parentNode, const cocos2d::Vec2& pos, float size)
 {
-	GimmickBase::Initialize(world, parentNode);
-
-	Size size = Director::getInstance()->getWinSize();
-
-	float s = 32;
-	Vec2 pos = Vec2(200.0f, 100.0f);
+	GimmickBase::Initialize(world, parentNode, pos, size);
 
 	DrawData = cocos2d::CCDrawNode::create();
 	this->DrawRect(
-		Vec2(-s * 0.5f, -s * 0.5f),
-		Vec2(-s * 0.5f,s * 0.5f),
-		Vec2(s * 0.5f, s * 0.5f),
-		Vec2(s * 0.5f, -s * 0.5f),
+		Vec2(-size, -size),
+		Vec2(-size, size),
+		Vec2(size, size),
+		Vec2(size, -size),
 		ccColor4F::BLUE);
 	this->addChild(DrawData);
 
@@ -37,9 +32,6 @@ void GimmickAccelerate::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 	rectBodyDef.type = b2_staticBody;
 
 	/* 物理エンジンの空間上の座標 */
-	rectBodyDef.position.Set(
-		pos.x / PTM_RATIO,
-		pos.y / PTM_RATIO);
 	rectBodyDef.userData = DrawData;
 
 	/* 物理エンジン上の物質作成 */
@@ -50,15 +42,17 @@ void GimmickAccelerate::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 	BodyData->SetMassData(&massData);
 
 	/* 物理エンジン上の物質の形と大きさ */
-	b2CircleShape spriteShape;
-	spriteShape.m_radius = s * 0.5f / PTM_RATIO;
+	b2PolygonShape polyShape;
+	polyShape.SetAsBox(size / PTM_RATIO, size / PTM_RATIO);
 
 	b2FixtureDef spriteFixturedef;
-	spriteFixturedef.shape = &spriteShape;
+	spriteFixturedef.shape = &polyShape;
 	spriteFixturedef.isSensor = true; // 検知のみ行う.
 
 	/* 物質の性質定義適用 */
 	BodyData->CreateFixture(&spriteFixturedef);
+
+	this->SetDrawPos(pos);
 }
 
 void GimmickAccelerate::Finalize(b2World* world, cocos2d::CCNode* parentNode)

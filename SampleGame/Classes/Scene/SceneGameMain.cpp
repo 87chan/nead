@@ -8,9 +8,9 @@
 #include "Node/MyDrawNode.h"
 #include "Ball/MyBallManager.h"
 #include "Stage/MyFieldManager.h"
-#include "Gimmick/MyGoal.h"
 #include "Gimmick/GimmickManager.h"
 #include "Gimmick/GimmickAccelerate.h"
+#include "Gimmick/GimmickGoal.h"
 
 USING_NS_CC;
 
@@ -20,9 +20,8 @@ SceneGameMain::SceneGameMain()
 , FieldMgr(nullptr)
 , BallNode1(nullptr)
 , BallNode2(nullptr)
-, GoalNode(nullptr)
 , LineShotDirection(nullptr)
-, GameEndrLabel(nullptr)
+, GameEndLabel(nullptr)
 , bClear(false)
 {
 }
@@ -42,10 +41,10 @@ void SceneGameMain::Initialize()
 	// 衝突を検知する.
 	World->SetContactListener(MyContactListener::GetInstance());
 
-	GameEndrLabel = cocos2d::LabelTTF::create("", "Arial", 24);
-	GameEndrLabel->setPosition(size.width * 0.5f, size.height * 0.5f);
-	GameEndrLabel->setVisible(false);
-	this->addChild(GameEndrLabel);
+	GameEndLabel = cocos2d::LabelTTF::create("", "Arial", 24);
+	GameEndLabel->setPosition(size.width * 0.5f, size.height * 0.5f);
+	GameEndLabel->setVisible(false);
+	this->addChild(GameEndLabel);
 
 	// リトライボタンを作成.
 	MenuItemImage* retryItem = MenuItemImage::create(
@@ -183,33 +182,12 @@ void SceneGameMain::Start()
 	}
 	GimmickMgr.reset(new GimmickManager());
 	GimmickMgr->Initialize(World, this);
-	GimmickMgr->CreateGimmick<GimmickAccelerate>(BallMgr.get(), Vec2(200.0f, 100.0f));
 
-	// ゴール.
-	if (GoalNode)
-	{
-		GoalNode->Finalize(World, this);
-	}
-	GoalNode = MyGoal::create();
-	GoalNode->InitParamInfo(goalPos, goalSize);
-	GoalNode->Initialize(World, this);
+	// 加速ギミック.
+	GimmickMgr->CreateGimmick<GimmickAccelerate>(BallMgr.get(), Vec2(500.0f, 100.0f), 32);
 
-	// 衝突時のコールバック登録.
-	std::vector<MyBall*> list = BallMgr->GetBallList();
-	std::vector<MyBall*>::iterator it = list.begin();
-	for (; it != list.end(); ++it)
-	{
-		if (MyBall* ball = (*it))
-		{
-			// ボールとゴールが触れた時.
-			ContactEntryParam param = ContactEntryParam();
-			param.body1 = ball->GetBodyData();
-			param.body2 = GoalNode->GetBodyData();
-			param.timing = ContactTiming::BEGIN;
-			param.callback = CC_CALLBACK_2(SceneGameMain::ClearCallback, this);
-			MyContactListener::GetInstance()->EntryContactCallBack(param);
-		}
-	}
+	// ゴールギミック.
+	GimmickMgr->CreateGimmick<GimmickGoal>(BallMgr.get(), goalPos, goalSize * 0.5f);
 
 	// ガイド.
 	if (LineShotDirection)
@@ -221,7 +199,7 @@ void SceneGameMain::Start()
 	LineShotDirection->Initialize(World, this);
 }
 
-void SceneGameMain::ClearCallback(b2Body* body1, b2Body* body2)
+void SceneGameMain::ClearCallback()
 {
 	this->GameEnd(GAME_STATE::GAME_CLEAR);
 }
@@ -248,8 +226,8 @@ void SceneGameMain::GameEnd(GAME_STATE state)
 		break;
 	}
 
-	GameEndrLabel->setString(str);
-	GameEndrLabel->setVisible(true);
+	GameEndLabel->setString(str);
+	GameEndLabel->setVisible(true);
 	bClear = true;
 }
 
@@ -257,7 +235,7 @@ void SceneGameMain::RetryCallBack(Ref* pSender)
 {
 	this->Start();
 	Director::getInstance()->resume();
-	GameEndrLabel->setVisible(false);
+	GameEndLabel->setVisible(false);
 	bClear = false;
 }
 

@@ -60,9 +60,6 @@
     <ClCompile Include="..\Classes\Gimmick\GimmickManager.cpp">
       <Filter>src\Gimmick</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Gimmick\MyGoal.cpp">
-      <Filter>src\Gimmick</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Node\MyDrawNode.cpp">
       <Filter>src\Node</Filter>
     </ClCompile>
@@ -96,6 +93,9 @@
     <ClCompile Include="..\Classes\ManagerBase\ManagerBase.cpp">
       <Filter>src\ManagerBase</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Gimmick\GimmickGoal.cpp">
+      <Filter>src\Gimmick</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -120,9 +120,6 @@
       <Filter>src\Gimmick</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Gimmick\GimmickManager.h">
-      <Filter>src\Gimmick</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Gimmick\MyGoal.h">
       <Filter>src\Gimmick</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Node\MyDrawNode.h">
@@ -160,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ManagerBase\ManagerBase.h">
       <Filter>src\ManagerBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Gimmick\GimmickGoal.h">
+      <Filter>src\Gimmick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

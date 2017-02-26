@@ -3,9 +3,11 @@
 GimmickBase::GimmickBase()
 {}
 
-void GimmickBase::Initialize(b2World* world, cocos2d::CCNode* parentNode)
+void GimmickBase::Initialize(b2World* world, cocos2d::CCNode* parentNode, const cocos2d::Vec2& pos, float size)
 {
 	MyDrawNode::Initialize(world, parentNode);
+
+	ParentRef = parentNode;
 }
 
 void GimmickBase::Finalize(b2World* world, cocos2d::CCNode* parentNode)

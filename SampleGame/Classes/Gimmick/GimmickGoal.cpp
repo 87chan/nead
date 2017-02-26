@@ -1,35 +1,19 @@
-#include "MyGoal.h"
+#include "GimmickGoal.h"
 #include "AppHeader.h"
+#include "Scene/SceneGameMain.h"
 
 USING_NS_CC;
 
-//static const Vec2 GOAL_POS = Vec2(400.0f, 180.0f);
-//static const float GOAL_SIZE = 32.0f;
-
-MyGoal::MyGoal()
-    : GoalPos()
-    , GoalSize(0.0f)
+GimmickGoal::GimmickGoal()
 {
 }
 
-MyGoal::~MyGoal()
+void GimmickGoal::Initialize(b2World* world, cocos2d::CCNode* parentNode, const cocos2d::Vec2& pos, float size)
 {
-}
-
-void MyGoal::InitParamInfo(const Vec2& pos, float size)
-{
-    this->GoalPos = pos;
-    this->GoalSize = size;
-}
-
-void MyGoal::Initialize(b2World* world, cocos2d::CCNode* parentNode)
-{
-	MyDrawNode::Initialize(world, parentNode);
-
-	Size size = Director::getInstance()->getWinSize();
+	GimmickBase::Initialize(world, parentNode, pos, size);
 
 	DrawData = cocos2d::CCDrawNode::create();
-    DrawData->drawCircle(GoalPos, GoalSize * 0.5f, 0.0f, 64, false, ccColor4F::RED);
+	DrawData->drawCircle(Vec2::ZERO, size, 0.0f, 64, false, ccColor4F::RED);
 	this->addChild(DrawData);
 
 	/* 物理エンジン上の物質の定義 */
@@ -43,9 +27,6 @@ void MyGoal::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 	rectBodyDef.type = b2_staticBody;
 
 	/* 物理エンジンの空間上の座標 */
-	rectBodyDef.position.Set(
-        GoalPos.x / PTM_RATIO,
-        GoalPos.y / PTM_RATIO);
 	rectBodyDef.userData = DrawData;
 
 	/* 物理エンジン上の物質作成 */
@@ -57,24 +38,39 @@ void MyGoal::Initialize(b2World* world, cocos2d::CCNode* parentNode)
 
 	/* 物理エンジン上の物質の形と大きさ */
 	b2CircleShape spriteShape;
-    spriteShape.m_radius = GoalSize * 0.5f / PTM_RATIO;
+	spriteShape.m_radius = size / PTM_RATIO;
 
-	/* 物質の性質定義（形、密度、摩擦） */
 	b2FixtureDef spriteFixturedef;
 	spriteFixturedef.shape = &spriteShape;
-	spriteFixturedef.density = DEFAULT_DENSITY;
-	spriteFixturedef.restitution = DEFAULT_RESTITUTION;
-	spriteFixturedef.friction = DEFAULT_FRICTION;
+	spriteFixturedef.isSensor = true; // 検知のみ行う.
 
 	/* 物質の性質定義適用 */
 	BodyData->CreateFixture(&spriteFixturedef);
+
+	this->SetDrawPos(pos);
 }
 
-void MyGoal::Finalize(b2World* world, cocos2d::CCNode* parentNode)
+void GimmickGoal::Finalize(b2World* world, cocos2d::CCNode* parentNode)
 {
-	MyDrawNode::Finalize(world, parentNode);
+	GimmickBase::Finalize(world, parentNode);
+}
+
+void GimmickGoal::UpdateBody(float dt)
+{
+	GimmickBase::UpdateBody(dt);
+}
+
+void GimmickGoal::OnContactBegin(b2Body* body1, b2Body* body2)
+{
+	GimmickBase::OnContactBegin(body1, body2);
+
+	// ステージクリア.
+	if (SceneGameMain* sceneMain = static_cast<SceneGameMain*>(ParentRef))
+	{
+		sceneMain->ClearCallback();
+	}
 }
 
 /**************************************************************************************************
-* EOF
+*!	EOF
 **************************************************************************************************/

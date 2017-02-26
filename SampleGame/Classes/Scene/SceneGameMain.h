@@ -35,7 +35,7 @@ public:
 
 	void Start();
 
-	void ClearCallback(b2Body* body1, b2Body* body2);
+	void ClearCallback();
 	void GameOverCallback();
 	void GameEnd(GAME_STATE state);
 
@@ -51,10 +51,9 @@ private:
 	std::shared_ptr<GimmickManager>	GimmickMgr;
 	MyBall*							BallNode1;
 	MyBall*							BallNode2;
-	MyGoal*							GoalNode;
 	MyDrawNode*						LineShotDirection;
 
-	cocos2d::LabelTTF*				GameEndrLabel;
+	cocos2d::LabelTTF*				GameEndLabel;
 	bool							bClear;
 };
 
