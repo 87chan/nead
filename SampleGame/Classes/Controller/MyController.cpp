@@ -76,13 +76,24 @@ void MyController::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 	{
 		if (ShotDirection.length() <= SELECT_LENGTH_THRESHOULD)
 		{
-			// 選択処理.
 			Vec2 touchPoint = touch->getLocation();
 
 			if (MyBall* ball = BallMgrRef->GetBall(touchPoint))
 			{
-				BallMgrRef->ResetAllSelected();
-				ball->SetSelect(true);
+				if (MyBall* selectedBall = BallMgrRef->GetSelectedBall())
+				{
+					if (ball->GetUniqueID() == selectedBall->GetUniqueID())
+					{
+						// ショットモード変更.
+						ball->ChangeShotMode();
+					}
+					else
+					{
+						// 再選択.
+						BallMgrRef->ResetAllSelected();
+						ball->SetSelect(true);
+					}
+				}
 			}
 		}
 		else
@@ -92,9 +103,31 @@ void MyController::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 			{
 				if (ball->IsPossibleShot())
 				{
-					static float POWER_RATE = 1.0f;
+					static float POWER_RATE = 0.025f;
 					const b2Vec2 force = shotDirection * length * POWER_RATE;
-					ball->OnShot(force);
+
+					// 正：反時計回り.
+					// 負：時計回り.
+					float TORQUE = 5000.0f;
+					float torque = 0.0f;
+
+					switch (ball->GetShotMode())
+					{
+					case SHOT_MODE::TOP_SPIN:
+						torque = -TORQUE;
+						break;
+
+					case SHOT_MODE::BACK_SPIN:
+						torque = TORQUE;
+						break;
+
+					case SHOT_MODE::SHOT_DEFAULT:
+					default:
+
+						break;
+					}
+
+					ball->OnShot(force, torque);
 
 					// 発射.
 					log("[%f,%f]の方向に長さ[%f]を発射", ShotDirection.x, ShotDirection.y, length);

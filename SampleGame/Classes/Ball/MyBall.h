@@ -7,6 +7,15 @@
 
 class MyBallManager;
 
+enum SHOT_MODE
+{
+	SHOT_DEFAULT,
+	TOP_SPIN,
+	BACK_SPIN,
+
+	SHOT_MODE_NUM,
+};
+
 class MyBall : public MySpriteNode
 {
 public:
@@ -19,7 +28,7 @@ public:
 	void Finalize(b2World* world, cocos2d::CCNode* parentNode) override;
 	void Update(float dt);
 	void UpdateShotNum();
-	void OnShot(const b2Vec2& force);
+	void OnShot(const b2Vec2& force, float torque);
 
 	bool IsZeroLeftShotNum() const { return (LeftShotNum <= 0); }
 	bool GetIsSelected() const { return bSelected; }
@@ -27,6 +36,8 @@ public:
 	bool IsFinished() const { return bStandby && this->IsZeroLeftShotNum(); }
 	void ConsumeLeftShotNum() { --LeftShotNum; }
 	void SetSelect(bool select) { bSelected = select; }
+	SHOT_MODE GetShotMode() { return ShotMode; }
+	void ChangeShotMode() { ShotMode = (SHOT_MODE)(((int)ShotMode + 1) % SHOT_MODE::SHOT_MODE_NUM); }
 
 private:
 	MyBallManager*					BallMgrRef;
@@ -39,6 +50,8 @@ private:
 	bool							bSelected;				// ëIëÇ≥ÇÍÇƒÇ¢ÇÈÇ©.
 	bool							bStandby;				// î≠éÀèÄîıÇ™èoóàÇΩÇ©.
 	int								LeftShotNum;			// écÇËî≠éÀâÒêî.
+
+	SHOT_MODE						ShotMode;
 };
 
 /**************************************************************************************************

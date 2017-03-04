@@ -17,6 +17,7 @@ MyBall::MyBall()
 , bSelected(false)
 , bStandby(true)
 , LeftShotNum(1)
+, ShotMode(SHOT_MODE::SHOT_DEFAULT)
 {
 }
 
@@ -74,6 +75,7 @@ void MyBall::Initialize(b2World* world, cocos2d::CCNode* parentNode, MyBallManag
 	massData.center = BodyData->GetWorldCenter();
 	massData.mass = DEFAULT_MASS;
 	BodyData->SetMassData(&massData);
+	BodyData->SetLinearDamping(DEFAULT_LINEAR_DAMPLING);
 	BodyData->SetAngularDamping(DEFAULT_ANGULAR_DAMPLING);
 
 	/* •¨—ƒGƒ“ƒWƒ“ã‚Ì•¨Ž¿‚ÌŒ`‚Æ‘å‚«‚³ */
@@ -125,15 +127,34 @@ void MyBall::Update(float dt)
 
 	Vec2 pos = this->GetSpritePos();
 	CircleSelected->Clear();
+
+	ccColor4F color;
 	if (bSelected)
 	{
+		switch (ShotMode)
+		{
+		case SHOT_MODE::TOP_SPIN:
+			color = ccColor4F::BLUE;
+			break;
+
+		case SHOT_MODE::BACK_SPIN:
+			color = ccColor4F::RED;
+			break;
+
+		case SHOT_MODE::SHOT_DEFAULT:
+			color = ccColor4F::GREEN;
+		default:
+
+			break;
+		}
+
 		CircleSelected->DrawCirlce(
 			pos,
 			this->GetSpriteWidth() * 0.5f + SELECTED_CIRCLE_RADUIS_OFFSET,
 			0.0f,
 			DEFAULT_SEGMENTS,
 			false,
-			ccColor4F::GREEN);
+			color);
 	}
 }
 
@@ -146,11 +167,12 @@ void MyBall::UpdateShotNum()
 	LabelShotNum->setPosition(this->GetSpritePos() + SHOT_NUM_OFFSET);
 }
 
-void MyBall::OnShot(const b2Vec2& force)
+void MyBall::OnShot(const b2Vec2& force, float torque)
 {
 	if (b2Body* body = this->GetBodyData())
 	{
-		body->ApplyForce(force, body->GetWorldCenter(), true);
+		body->ApplyLinearImpulse(force, body->GetWorldCenter(), true);
+		body->ApplyAngularImpulse(torque, true);
 
 		bStandby = false;
 	}

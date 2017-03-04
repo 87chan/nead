@@ -16,7 +16,8 @@ static const float	DEFAULT_MASS = 300.0f;
 static const float	DEFAULT_DENSITY = 1.0f; // –§“x.
 static const float	DEFAULT_RESTITUTION = 0.5f; // ”½”­ŒW”.
 static const float	DEFAULT_FRICTION = 1.0f; // –€C.
-static const float	DEFAULT_ANGULAR_DAMPLING = 8.0f; // Œ¸Š.
+static const float	DEFAULT_LINEAR_DAMPLING = 1.0f; // ˆÚ“®Œ¸Š.
+static const float	DEFAULT_ANGULAR_DAMPLING = 0.05f; // ‰ñ“]Œ¸Š.
 
 static const int	DEFAULT_SEGMENTS = 64;
 
