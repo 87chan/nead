@@ -40,7 +40,7 @@ void SceneGameMain::Initialize()
 	//ƒ[ƒ‹ƒh¶¬  
 	b2Vec2 gravity = b2Vec2(0, DEFAULT_GRAVITY);
 	World = new b2World(gravity);
-	World->SetAllowSleeping(true);
+	World->SetAllowSleeping(false);
 	World->SetContinuousPhysics(true);
 
 	// Õ“Ë‚ğŒŸ’m‚·‚é.

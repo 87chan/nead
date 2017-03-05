@@ -8,6 +8,7 @@ USING_NS_CC;
 static const Vec2	SHOT_NUM_OFFSET = Vec2(0.0f, 20.0f);
 static const float	NEXT_STANDBY_TIME = 3.0f;
 static const float	SELECTED_CIRCLE_RADUIS_OFFSET = 3.0f;
+static const float	STOPPED_VELOCITY_LENGTH = 0.1f;
 
 MyBall::MyBall()
 : BallMgrRef(nullptr)
@@ -104,7 +105,7 @@ void MyBall::Update(float dt)
 {
 	if (!bStandby)
 	{
-		if(!BodyData->IsAwake())
+		if(this->IsStopped())
 		{
 			bStandby = true;
 
@@ -176,6 +177,19 @@ void MyBall::OnShot(const b2Vec2& force, float torque)
 
 		bStandby = false;
 	}
+}
+
+bool MyBall::IsStopped()
+{
+	if (BodyData)
+	{
+		float length = BodyData->GetLinearVelocity().Length();
+		if (length <= STOPPED_VELOCITY_LENGTH)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 /**************************************************************************************************

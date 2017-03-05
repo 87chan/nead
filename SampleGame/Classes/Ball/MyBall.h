@@ -29,6 +29,7 @@ public:
 	void Update(float dt);
 	void UpdateShotNum();
 	void OnShot(const b2Vec2& force, float torque);
+	bool IsStopped();
 
 	bool IsZeroLeftShotNum() const { return (LeftShotNum <= 0); }
 	bool GetIsSelected() const { return bSelected; }
