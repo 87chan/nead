@@ -11,6 +11,7 @@
 #include "Gimmick/GimmickManager.h"
 #include "Gimmick/GimmickAccelerate.h"
 #include "Gimmick/GimmickGoal.h"
+#include "Gimmick/GimmickGravity.h"
 
 USING_NS_CC;
 
@@ -32,8 +33,12 @@ void SceneGameMain::Initialize()
 
 	Size size = Director::getInstance()->getWinSize();
 
+	// ステージ別の情報として以下の要素が必要.
+	// 広さ.
+	// 初期重力.
+
 	//ワールド生成  
-	b2Vec2 gravity = b2Vec2(0, -9.8f);
+	b2Vec2 gravity = b2Vec2(0, DEFAULT_GRAVITY);
 	World = new b2World(gravity);
 	World->SetAllowSleeping(true);
 	World->SetContinuousPhysics(true);
@@ -99,6 +104,8 @@ void SceneGameMain::update(float delta)
 
 void SceneGameMain::Start()
 {
+	World->SetGravity(b2Vec2(0, DEFAULT_GRAVITY));
+
 	//絶対に子にする必要はないが、子にするとタイルレイヤーがそのまま表示される。
 	std::string filePath = GlobalInfo::GetInstance()->stagePath;
 	TMXTiledMap* pMap = TMXTiledMap::create(filePath);
@@ -176,6 +183,9 @@ void SceneGameMain::Start()
 
 	// 加速ギミック.
 	GimmickMgr->CreateGimmick<GimmickAccelerate>(BallMgr.get(), Vec2(500.0f, 100.0f), 32);
+
+	// 重力ギミック.
+	GimmickMgr->CreateGimmick<GimmickGravity>(BallMgr.get(), Vec2(300.0f, 100.0f), 32);
 
 	// ゴールギミック.
 	GimmickMgr->CreateGimmick<GimmickGoal>(BallMgr.get(), goalPos, goalSize * 0.5f);

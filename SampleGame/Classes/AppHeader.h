@@ -1,6 +1,7 @@
 #pragma once
 
 #define PTM_RATIO 32.0f
+#define DEFAULT_GRAVITY (-9.8f)
 #define TAG_BALL 0
 #define TAG_GOAL 1
 #define UI_LAYER 1

@@ -96,6 +96,9 @@
     <ClCompile Include="..\Classes\Gimmick\GimmickGoal.cpp">
       <Filter>src\Gimmick</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Gimmick\GimmickGravity.cpp">
+      <Filter>src\Gimmick</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -159,6 +162,9 @@
       <Filter>src\ManagerBase</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Gimmick\GimmickGoal.h">
+      <Filter>src\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Gimmick\GimmickGravity.h">
       <Filter>src\Gimmick</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,13 +23,16 @@ public:
 	CREATE_FUNC(MyNode);
 
 protected:
-	b2Body*			BodyData;
+	b2World*			WorldRef;
+	cocos2d::CCNode*	ParentRef;
+
+	b2Body*				BodyData;
 
 private:
-	int				UniqueID;
+	int					UniqueID;
 
 private:
-	static int		UniqueIDCounter;
+	static int			UniqueIDCounter;
 };
 
 /**************************************************************************************************
